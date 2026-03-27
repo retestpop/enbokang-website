@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个性化小规模生信服务 - 恩博康生物</title>
+    <meta name="description" content="恩博康生物提供个性化小规模生物信息学分析服务，涵盖GWAS、QTL、转录组、非编码RNA、蛋白组、代谢组、多组学联合分析等。">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header { background: linear-gradient(135deg, #a6c81e 0%, #6a9e0a 100%); padding: 80px 0; color: #fff; }
+        .page-header h1 { font-size: 40px; margin: 0 0 16px; font-weight: 700; }
+        .page-header p { font-size: 18px; margin: 0; opacity: 0.9; line-height: 1.7; max-width: 700px; }
+        .page-nav { background: #fff; border-bottom: 1px solid #eee; padding: 16px 0; }
+        .page-nav .container { display: flex; gap: 8px; flex-wrap: wrap; }
+        .page-nav a { color: #666; font-size: 14px; padding: 8px 16px; border-radius: 20px; transition: all 0.3s; text-decoration: none; }
+        .page-nav a:hover, .page-nav a.active { background: #a6c81e; color: #fff; }
+        .section { padding: 60px 0; }
+        .section.gray { background: #f8f9fa; }
+        .section-header { text-align: center; margin-bottom: 48px; }
+        .section-header .tag { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 3px; color: #a6c81e; text-transform: uppercase; margin-bottom: 8px; }
+        .section-header h2 { font-size: 32px; color: #333; margin: 0 0 12px; }
+        .section-header p { font-size: 16px; color: #666; margin: 0; }
+        .bio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+        .bio-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.06); transition: all 0.3s; border: 1px solid #eee; }
+        .bio-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); border-color: #a6c81e; }
+        .bio-card .card-icon { height: 120px; background: linear-gradient(135deg, #a6c81e, #6a9e0a); display: flex; align-items: center; justify-content: center; }
+        .bio-card .card-icon i { font-size: 48px; color: rgba(255,255,255,0.9); }
+        .bio-card .card-body { padding: 24px; }
+        .bio-card h3 { font-size: 18px; color: #333; margin: 0 0 10px; font-weight: 700; }
+        .bio-card p { font-size: 14px; color: #666; margin: 0 0 16px; line-height: 1.6; }
+        .bio-card .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+        .bio-card .tag-item { font-size: 12px; color: #a6c81e; background: rgba(166,200,30,0.1); padding: 3px 10px; border-radius: 12px; }
+        .bio-card .btn { display: block; text-align: center; padding: 10px; background: #a6c81e; color: #fff; border-radius: 8px; font-size: 14px; text-decoration: none; transition: background 0.3s; }
+        .bio-card .btn:hover { background: #6a9e0a; }
+        .intro-box { background: #fff; border-radius: 12px; padding: 40px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); margin-bottom: 48px; }
+        .intro-box h2 { font-size: 28px; margin: 0 0 16px; color: #333; }
+        .intro-box p { font-size: 16px; color: #666; line-height: 1.8; margin: 0 0 12px; }
+        .intro-box .features { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 24px; }
+        .intro-box .feature { display: flex; align-items: center; gap: 10px; font-size: 15px; color: #444; }
+        .intro-box .feature i { color: #a6c81e; font-size: 18px; }
+        .float-contact { position: fixed; right: 20px; bottom: 80px; z-index: 999; display: flex; flex-direction: column; gap: 12px; }
+        .float-item { width: 48px; height: 48px; background: linear-gradient(135deg, #a6c81e, #6a9e0a); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(166,200,30,0.4); transition: transform 0.3s; position: relative; }
+        .float-item:hover { transform: scale(1.1); }
+        .float-item i { font-size: 20px; color: #fff; }
+        .float-item span { position: absolute; right: 58px; background: #fff; color: #333; padding: 6px 12px; border-radius: 8px; font-size: 13px; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: none; }
+        .float-item:hover span { display: block; }
+        .wechat-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1001; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); text-align: center; }
+        .wechat-popup.show { display: block; }
+        .wechat-popup img { width: 200px; height: 200px; border-radius: 8px; }
+        .wechat-popup p { margin: 12px 0 0; font-size: 14px; color: #666; }
+        .wechat-close { position: absolute; top: 10px; right: 14px; font-size: 28px; cursor: pointer; color: #999; line-height: 1; }
+        .wechat-close:hover { color: #333; }
+        .mask { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: 1000; }
+        .mask.show { display: block; }
+        .main-footer { background: #1a1a2e; padding: 40px 0 0; color: #888; }
+        .main-footer .footer-bottom { border-top: 1px solid #2a2a3e; padding: 20px 0; text-align: center; font-size: 13px; }
+        .main-footer .footer-bottom p { margin: 0; }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <span><i class="fas fa-phone-alt"></i> 13683326312</span>
+                <span><i class="fas fa-envelope"></i> service@enbokang.com</span>
+                <span><i class="fas fa-clock"></i> 周一至周六 8:30-17:30</span>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <a href="../index.html">
+                        <div class="logo-icon"><img src="../assets/logo.svg" alt="恩博康生物" width="42" height="42"></div>
+                        <div class="logo-text"><span class="logo-cn">恩博康生物</span><span class="logo-en">ENBOKANG BIO</span></div>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="../index.html">首页</a></li>
+                        <li><a href="../pages/sanger.html">Sanger测序</a></li>
+                        <li><a href="../pages/primer.html">引物合成</a></li>
+                        <li class="active"><a href="index.html">生信分析</a></li>
+                        <li><a href="../pages/contact.html">联系我们</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>个性化小规模生信服务</h1>
+            <p>针对科研工作者和小型实验室，提供灵活、高效、专业的生物信息学分析支持，涵盖基因组、转录组、蛋白组、代谢组等多组学数据解析。</p>
+        </div>
+    </div>
+
+    <div class="page-nav">
+        <div class="container">
+            <a href="#intro">服务介绍</a>
+            <a href="#services">服务项目</a>
+        </div>
+    </div>
+
+    <section class="section" id="intro">
+        <div class="container">
+            <div class="intro-box">
+                <h2>什么是个性化小规模生信服务？</h2>
+                <p>针对科研工作者和小型实验室，提供灵活、高效、专业的生物信息学分析支持，涵盖GWAS、转录组、非编码RNA、蛋白组、代谢组、微生物组等方向，少量样本即可分析，全程工程师跟进，交付SCI级别图表。</p>
+                <div class="features">
+                    <div class="feature"><i class="fas fa-check-circle"></i> 少量样本即可分析</div>
+                    <div class="feature"><i class="fas fa-check-circle"></i> 个性化分析方案定制</div>
+                    <div class="feature"><i class="fas fa-check-circle"></i> 全程工程师跟踪支持</div>
+                    <div class="feature"><i class="fas fa-check-circle"></i> SCI级别图表交付</div>
+                    <div class="feature"><i class="fas fa-check-circle"></i> 结果可重复可验证</div>
+                    <div class="feature"><i class="fas fa-check-circle"></i> 快速响应及时交付</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section gray" id="services">
+        <div class="container">
+            <div class="section-header">
+                <div class="tag">BIOINFORMATICS</div>
+                <h2>8大核心服务模块</h2>
+                <p>覆盖基因组、转录组、蛋白组、代谢组等多组学分析，一站式满足您的科研需求</p>
+            </div>
+            <div class="bio-grid">
+                <article class="bio-card">
+                    <div class="card-icon"><i class="fas fa-dna"></i></div>
+                    <div class="card-body">
+                        <h3>遗传定位与候选基因筛选</h3>
+                        <p>基于GWAS、QTL-seq等方法的遗传定位分析，精确定位重要性状区间，挖掘候选功能基因。</p>
+                        <div class="card-tags">
+                            <span class="tag-item">GWAS</span>
+                            <span class="tag-item">QTL</span>
+                            <span class="tag-item">候选基因</span>
+                        </div>
+                        <a href="genetic-mapping.html" class="btn">了解详情</a>
+                    </div>
+                </article>
+                <article class="bio-card">
+                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="card-body">
+                        <h3>转录组与表达分析</h3>
+                        <p>差异表达分析、富集分析、WGCNA共表达网络构建，解析基因表达调控机制。</p>
+                        <div class="card-tags">
+                            <span class="tag-item">RNA-seq</span>
+                            <span class="tag-item">WGCNA</span>
+                            <span class="tag-item">富集分析</span>
+                        </div>
+                        <a href="transcriptome.html" class="btn">了解详情</a>
+                    </div>
+                </article>
+                <article class="bio-card">
+                    <div class="card-icon"><i class="fas fa-project-diagram"></i></div>
+                    <div class="card-body">
+                        <h3>非编码RNA与调控分析</h3>
+                        <p>miRNA、lncRNA、circRNA鉴定与功能注释，ceRNA网络构建，揭示非编码调控机制。</p>
+                        <div class="card-tags">
+                            <span class="tag-item">miRNA</span>
+                            <span class="tag-item">lncRNA</span>
+                            <span class="tag-item">ceRNA</span>
+                        </div>
+                        <a href="noncoding-rna.html" class="btn">了解详情</a>
+                    </div>
+                </article>
+                <article class="bio-card">
+                    <div class="card-icon"><i class="fas fa-atom"></i></div>
+                    <div class="card-body">
+                        <h3>蛋白组结果解读</h3>
+                        <p>蛋白鉴定、定量分析、PPI网络构建与功能注释，系统解析蛋白层面调控机制。</p>
+                        <div class="card-tags">
+                            <span class="tag-item">iTRAQ</span>
+                            <span class="tag-item">TMT</span>
+                            <span class="tag-item">PPI</span>
+                        </div>
+                        <a href="proteome.html" class="btn">了解详情</a>
+                    </div>
+                </article>
+                <article class="bio-card">
+                    <div class="card-icon"><i class="fas fa-flask"></i></div>
+                    <div class="card-body">
+                        <h3>代谢组与品质分析</h3>
+                        <p>代谢物鉴定、定量分析与品质性状关联研究，建立代谢-表型之间的桥梁。</p>
+                        <div class="card-tags">
+                            <span class="tag-item">LC-MS</span>
+                            <span class="tag-item">GC-MS</span>
+                            <span class="tag-item">品质分析</span>
+                        </div>
+                        <a href="metabolome.html" class="btn">了解详情</a>
+                    </div>
+                </article>
+                <article class="bio-card">
+                    <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+                    <div class="card-body">
+                        <h3>多组学联合分析</h3>
+                        <p>基因组-转录组-蛋白组-代谢组跨层级联合分析，多维度解析复杂生物学问题。</p>
+                        <div class="card-tags">
+                            <span class="tag-item">WGCNA</span>
+                            <span class="tag-item">跨组学</span>
+                            <span class="tag-item">关联分析</span>
+                        </div>
+                        <a href="multiomics.html" class="btn">了解详情</a>
+                    </div>
+                </article>
+                <article class="bio-card">
+                    <div class="card-icon"><i class="fas fa-microscope"></i></div>
+                    <div class="card-body">
+                        <h3>微生物与互作分析</h3>
+                        <p>16S/ITS扩增子分析、宏基因组与宿主互作网络，解析微生物组与宿主的互作关系。</p>
+                        <div class="card-tags">
+                            <span class="tag-item">16S</span>
+                            <span class="tag-item">ITS</span>
+                            <span class="tag-item">宏基因组</span>
+                        </div>
+                        <a href="microbe.html" class="btn">了解详情</a>
+                    </div>
+                </article>
+                <article class="bio-card">
+                    <div class="card-icon"><i class="fas fa-palette"></i></div>
+                    <div class="card-body">
+                        <h3>数据整理、画图与结果补充</h3>
+                        <p>数据清洗、SCI级别图表制作、个性化分析补充，让您的研究结果更加完善。</p>
+                        <div class="card-tags">
+                            <span class="tag-item">数据清洗</span>
+                            <span class="tag-item">图表制作</span>
+                            <span class="tag-item">结果补充</span>
+                        </div>
+                        <a href="data-visualization.html" class="btn">了解详情</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>需要个性化生信分析支持？</h2>
+            <p>联系我们，专业团队为您定制分析方案</p>
+            <a href="../pages/contact.html" class="btn">立即咨询</a>
+        </div>
+    </section>
+
+    <div class="float-contact">
+        <div class="float-item" title="电话咨询" onclick="location.href='tel:13683326312'">
+            <i class="fas fa-phone-alt"></i>
+            <span>13683326312</span>
+        </div>
+        <div class="float-item" title="微信" id="wechatBtn">
+            <i class="fab fa-weixin"></i>
+            <span>微信咨询</span>
+        </div>
+    </div>
+    <div class="mask" id="mask"></div>
+    <div class="wechat-popup" id="wechatPopup">
+        <span class="wechat-close" id="wechatClose">&times;</span>
+        <img src="WeChat.png" alt="微信二维码">
+        <p>扫码添加好友</p>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 恩博康（北京）生物科技有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+</body>
+</html>

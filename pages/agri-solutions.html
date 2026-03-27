@@ -1,0 +1,669 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>农业科研解决方案 - 恩博康生物</title>
+    <meta name="description" content="恩博康提供农业科研全流程解决方案，涵盖作物功能基因实验、分子标记开发、基因编辑实验、病原菌检测、载体构建等关键技术与服务。">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-hero {
+            background: linear-gradient(135deg, #1B263B 0%, #2d4a1e 50%, #a6c81e 100%);
+            padding: 80px 0;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .page-hero .container { position: relative; z-index: 1; }
+        .page-hero .tag-line { font-size: 13px; letter-spacing: 3px; color: #a6c81e; text-transform: uppercase; margin-bottom: 12px; font-weight: 700; }
+        .page-hero h1 { font-size: 42px; font-weight: 900; margin: 0 0 16px; line-height: 1.2; }
+        .page-hero p { font-size: 16px; opacity: 0.85; max-width: 700px; line-height: 1.8; margin: 0; }
+        .page-hero .stats-row { display: flex; gap: 40px; margin-top: 32px; flex-wrap: wrap; }
+        .page-hero .stat-item .num { font-size: 28px; font-weight: 900; color: #a6c81e; }
+        .page-hero .stat-item .label { font-size: 13px; opacity: 0.7; }
+
+        .section { padding: 60px 0; }
+        .section.gray { background: #f8f9fa; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-header .tag { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 3px; color: #a6c81e; text-transform: uppercase; margin-bottom: 8px; }
+        .section-header h2 { font-size: 32px; color: #1B263B; margin: 0 0 12px; font-weight: 800; }
+        .section-header p { font-size: 16px; color: #666; margin: 0; max-width: 700px; margin: 0 auto; }
+
+        .solution-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            margin-bottom: 32px;
+            border: 1px solid #eee;
+            transition: all 0.3s;
+        }
+        .solution-card:hover {
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            border-color: #a6c81e;
+        }
+        .solution-header {
+            padding: 28px 32px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            background: linear-gradient(135deg, #f8fbf0, #fff);
+        }
+        .solution-num {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #a6c81e, #6a9e0a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .solution-num.green { background: linear-gradient(135deg, #27ae60, #2ecc71); }
+        .solution-num.blue { background: linear-gradient(135deg, #0096C7, #48CAE4); }
+        .solution-num.purple { background: linear-gradient(135deg, #5C6BC0, #283593); }
+        .solution-num.orange { background: linear-gradient(135deg, #FFA62B, #E67E22); }
+        .solution-title-wrap h3 { font-size: 20px; font-weight: 800; color: #1B263B; margin: 0 0 4px; }
+        .solution-title-wrap p { font-size: 14px; color: #666; margin: 0; line-height: 1.5; }
+
+        .solution-body { padding: 28px 32px; }
+        .solution-desc { font-size: 15px; color: #555; line-height: 1.8; margin: 0 0 24px; }
+
+        .flow-steps {
+            display: flex;
+            gap: 0;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .flow-steps::before {
+            content: '';
+            position: absolute;
+            top: 22px;
+            left: 26px;
+            right: 26px;
+            height: 2px;
+            background: linear-gradient(90deg, #a6c81e, #6a9e0a);
+            z-index: 0;
+        }
+        .flow-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .flow-step .step-num {
+            width: 44px;
+            height: 44px;
+            background: #fff;
+            border: 2px solid #a6c81e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 14px;
+            font-weight: 800;
+            color: #a6c81e;
+        }
+        .flow-step .step-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1B263B;
+            margin-bottom: 4px;
+        }
+        .flow-step .step-desc {
+            font-size: 11px;
+            color: #888;
+            line-height: 1.4;
+        }
+
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+        .service-tag {
+            font-size: 12px;
+            padding: 3px 12px;
+            background: rgba(166,200,30,0.1);
+            color: #6a9e0a;
+            border-radius: 20px;
+            font-weight: 500;
+            border: 1px solid rgba(166,200,30,0.2);
+        }
+        .service-tag.blue { background: rgba(0,150,199,0.1); color: #0077a8; border-color: rgba(0,150,199,0.2); }
+        .service-tag.purple { background: rgba(92,107,192,0.1); color: #3d4db7; border-color: rgba(92,107,192,0.2); }
+        .service-tag.orange { background: rgba(255,166,43,0.1); color: #c06010; border-color: rgba(255,166,43,0.2); }
+
+        .solution-footer {
+            padding: 20px 32px;
+            background: #f8f9f8;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .solution-footer p { font-size: 14px; color: #555; margin: 0; }
+        .solution-footer .ask-btn {
+            background: #a6c81e;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        .solution-footer .ask-btn:hover { background: #6a9e0a; }
+
+        .cta-section {
+            background: linear-gradient(135deg, #1B263B, #2d4a1e);
+            padding: 60px 0;
+            text-align: center;
+            color: #fff;
+        }
+        .cta-section h2 { font-size: 32px; font-weight: 800; margin: 0 0 16px; }
+        .cta-section p { font-size: 16px; opacity: 0.8; margin: 0 0 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .cta-section .cta-btn {
+            display: inline-block;
+            background: #a6c81e;
+            color: #fff;
+            padding: 14px 36px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .cta-section .cta-btn:hover { background: #8ab015; transform: translateY(-2px); }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .feature-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #eee;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .feature-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-color: #a6c81e; }
+        .feature-card .icon { width: 52px; height: 52px; background: linear-gradient(135deg, rgba(166,200,30,0.15), rgba(106,158,10,0.15)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
+        .feature-card .icon i { font-size: 22px; color: #a6c81e; }
+        .feature-card h4 { font-size: 16px; font-weight: 700; color: #1B263B; margin: 0 0 8px; }
+        .feature-card p { font-size: 13px; color: #888; margin: 0; line-height: 1.5; }
+
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 30px; }
+            .solution-header { padding: 20px; flex-direction: column; text-align: center; }
+            .solution-body { padding: 20px; }
+            .solution-footer { padding: 16px 20px; flex-direction: column; text-align: center; }
+            .flow-steps { flex-wrap: wrap; gap: 16px; }
+            .flow-steps::before { display: none; }
+            .flow-step { flex: 0 0 calc(33.33% - 12px); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 顶部信息栏 -->
+<div class="top-bar">
+    <div class="container">
+        <div class="top-bar-left">
+            <span><i class="fas fa-phone-alt"></i> 13683326312</span>
+            <span><i class="fas fa-envelope"></i> service@enbokang.com</span>
+        </div>
+        <div class="top-bar-right">
+            <a href="#"><i class="fas fa-user"></i> 登录</a>
+            <a href="#">注册</a>
+        </div>
+    </div>
+</div>
+
+<!-- 主导航 -->
+<header class="main-header" id="mainHeader">
+    <div class="container">
+        <div class="header-inner">
+            <div class="logo">
+                <a href="../index.html">
+                    <div class="logo-icon">
+                        <img src="../assets/logo.svg" alt="恩博康生物" width="42" height="42">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-cn">恩博康生物</span>
+                        <span class="logo-en">ENBOKANG BIO</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li class="active"><a href="index.html">农业科研</a></li>
+                    <li><a href="pages/sanger.html">一代测序</a></li>
+                    <li><a href="pages/primer.html">引物合成</a></li>
+                    <li><a href="bioinfo/index.html">生信分析</a></li>
+                    <li><a href="products/pcr.html">产品中心</a></li>
+                </ul>
+            </nav>
+            <a href="../index.html#contact" class="header-cta">立即咨询</a>
+        </div>
+    </div>
+</header>
+
+<!-- 页面标题 -->
+<div class="page-hero">
+    <div class="container">
+        <div class="tag-line">Agricultural Research Solutions</div>
+        <h1>农业科研解决方案</h1>
+        <p>围绕作物功能基因研究、分子标记开发、基因编辑和载体构建等核心需求，提供从实验设计到结果验证的完整技术支持，帮助科研人员高效推进课题研究。</p>
+        <div class="stats-row">
+            <div class="stat-item"><div class="num">5+</div><div class="label">核心解决方案</div></div>
+            <div class="stat-item"><div class="num">50+</div><div class="label">合作科研院所</div></div>
+            <div class="stat-item"><div class="num">5000+</div><div class="label">累计服务客户</div></div>
+            <div class="stat-item"><div class="num">99%</div><div class="label">测序成功率</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- 服务总览 -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="tag">Core Solutions</div>
+            <h2>五大核心服务方案</h2>
+            <p>覆盖作物分子研究的关键技术环，从基因克隆到功能验证，从标记开发到品种应用</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-dna"></i></div>
+                <h4>基因功能验证</h4>
+                <p>从基因克隆到功能验证的完整方案，支持表达分析、定点诱变、互作验证</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-seedling"></i></div>
+                <h4>分子标记开发</h4>
+                <p>KASP、CAPS、SSR等标记开发，支持位点选择和群体分型</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-cut"></i></div>
+                <h4>基因编辑验证</h4>
+                <p>CRISPR/Cas编辑位点设计，阳性筛选，一站式服务</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-bug"></i></div>
+                <h4>病原微生物检测</h4>
+                <p>植物病原真细菌、菌物分子检测与鉴定，序列比对确认病原物</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon"><i class="fas fa-vector-square"></i></div>
+                <h4>载体构建确认</h4>
+                <p>过表达、报告、克隆等多种载体构建，测序确认插入准确</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 五大解决方案 -->
+<section class="section gray" id="solutions">
+
+    <!-- 方案一：作物功能基因实验 -->
+    <div class="container">
+        <div class="solution-card">
+            <div class="solution-header">
+                <div class="solution-num">01</div>
+                <div class="solution-title-wrap">
+                    <h3>作物功能基因验证方案</h3>
+                    <p>从目标基因筛选到功能验证的完整技术支持，覆盖基因敲除、载体构建到表达分析</p>
+                </div>
+            </div>
+            <div class="solution-body">
+                <p class="solution-desc">围绕作物功能基因研究的核心需求，提供从目标基因筛选、基因克隆、载体构建到功能验证的完整技术支持。服务内容包括引物设计、PCR扩增、表达载体构建、转化筛选、序列确认及后续功能分析等相关环节，可根据不同课题需求提供更精准的实验合作与技术支持，帮助科研人员高效推进位点筛选、功能解读和机制研究。</p>
+                <div class="service-tags">
+                    <span class="service-tag">引物设计</span>
+                    <span class="service-tag">PCR扩增</span>
+                    <span class="service-tag">基因克隆</span>
+                    <span class="service-tag">载体构建</span>
+                    <span class="service-tag">融合表达构建</span>
+                    <span class="service-tag">菌液鉴定</span>
+                    <span class="service-tag">一代测序</span>
+                    <span class="service-tag">序列确认</span>
+                    <span class="service-tag">功能分析</span>
+                    <span class="service-tag">技术支持</span>
+                </div>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="step-num">01</div>
+                        <div class="step-title">基因克隆</div>
+                        <div class="step-desc">目标基因CDS、ORF、启动子或特定功能片段扩增</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num">02</div>
+                        <div class="step-title">载体构建</div>
+                        <div class="step-desc">过表达、报告、编辑、定点及融合表达载体</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num">03</div>
+                        <div class="step-title">转化验证</div>
+                        <div class="step-desc">转化、阳性筛选及前期验证，确保材料满足要求</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num">04</div>
+                        <div class="step-title">序列确认</div>
+                        <div class="step-desc">菌液测序、质粒测序及序列比对，确认准确无误</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num">05</div>
+                        <div class="step-title">功能分析</div>
+                        <div class="step-desc">结合表达、定量、互作及分子研究需求，提供后续支持</div>
+                    </div>
+                </div>
+            </div>
+            <div class="solution-footer">
+                <p>涉及服务：引物设计 | PCR扩增 | 基因克隆 | 载体构建 | 融合表达 | 菌液鉴定 | 一代测序 | 序列确认</p>
+                <a href="../index.html#contact" class="ask-btn">咨询详情 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- 方案二：分子标记开发与品种支持 -->
+        <div class="solution-card">
+            <div class="solution-header">
+                <div class="solution-num green">02</div>
+                <div class="solution-title-wrap">
+                    <h3>分子标记开发与品种支持</h3>
+                    <p>从各位点筛选到材料分型的完整分子标记支持，覆盖标记设计、验证和结果整理</p>
+                </div>
+            </div>
+            <div class="solution-body">
+                <p class="solution-desc">面向作物遗传育种和分子标记研究需求，提供从各位点筛选、标记设计到材料分型与结果整理的完整支持。服务批量产出、品质、抗病、抗逆、纯合和突变等重要农艺性状，帮助客户将定位结果或各位点基因信息转化为可用于群体筛选和品种应用的分子标记，提高材料鉴定效率和品种选择精度。</p>
+                <div class="service-tags">
+                    <span class="service-tag blue">各位点筛选</span>
+                    <span class="service-tag blue">标记开发</span>
+                    <span class="service-tag blue">引物设计</span>
+                    <span class="service-tag blue">PCR验证</span>
+                    <span class="service-tag blue">KASP支持</span>
+                    <span class="service-tag blue">CAPS/dCAPS开发</span>
+                    <span class="service-tag blue">InDel/SSR开发</span>
+                    <span class="service-tag blue">群体分型</span>
+                    <span class="service-tag blue">结果统计</span>
+                    <span class="service-tag blue">材料鉴定</span>
+                </div>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#27ae60;color:#27ae60;">01</div>
+                        <div class="step-title">各位点筛选</div>
+                        <div class="step-desc">结合定位结果、变异信息和目标性状，筛选关键位点</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#27ae60;color:#27ae60;">02</div>
+                        <div class="step-title">标记设计</div>
+                        <div class="step-desc">根据需求设计KASP、CAPS、dCAPS、InDel、SSR等标记</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#27ae60;color:#27ae60;">03</div>
+                        <div class="step-title">引物优化验证</div>
+                        <div class="step-desc">标记引物设计、条件优化和前期可用性验证</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#27ae60;color:#27ae60;">04</div>
+                        <div class="step-title">材料分型分析</div>
+                        <div class="step-desc">对作物材料、群体材料或自然群体进行分型检测</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#27ae60;color:#27ae60;">05</div>
+                        <div class="step-title">结果整理应用</div>
+                        <div class="step-desc">输出标记信息、分型结果和建库建议，服务后续品种</div>
+                    </div>
+                </div>
+            </div>
+            <div class="solution-footer">
+                <p>涉及服务：各位点筛选 | 标记开发 | KASP | CAPS/dCAPS | 群体分型 | 结果统计 | 材料鉴定</p>
+                <a href="../index.html#contact" class="ask-btn">咨询详情 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- 方案三：基因编辑与敲除验证 -->
+        <div class="solution-card">
+            <div class="solution-header">
+                <div class="solution-num blue">03</div>
+                <div class="solution-title-wrap">
+                    <h3>基因编辑与敲除验证方案</h3>
+                    <p>从编辑位点设计到突变类型判定的完整CRISPR/Cas基因编辑支持服务</p>
+                </div>
+            </div>
+            <div class="solution-body">
+                <p class="solution-desc">针对基因编辑研究中的关键验证需求，提供从编辑位点设计、阳性材料筛选到突变类型判定的完整服务。适用于CRISPR/Cas等基因编辑项目，可协助客户高效完成编辑材料的前期筛选、位点验证、序列比对和突变类型分析，为后续传递分析、功能验证和材料保存提供可靠依据。</p>
+                <div class="service-tags">
+                    <span class="service-tag purple">编辑位点设计支持</span>
+                    <span class="service-tag purple">检测引物设计</span>
+                    <span class="service-tag purple">PCR扩增</span>
+                    <span class="service-tag purple">阳性筛选</span>
+                    <span class="service-tag purple">一代测序</span>
+                    <span class="service-tag purple">序列比对</span>
+                    <span class="service-tag purple">突变类型分析</span>
+                    <span class="service-tag purple">材料整理</span>
+                    <span class="service-tag purple">结果报告</span>
+                    <span class="service-tag purple">技术支持</span>
+                </div>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#0096C7;color:#0096C7;">01</div>
+                        <div class="step-title">编辑位点确认</div>
+                        <div class="step-desc">根据目标基因和编辑策略整调目标区域信息，明确检测范围</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#0096C7;color:#0096C7;">02</div>
+                        <div class="step-title">检测引物设计</div>
+                        <div class="step-desc">针对编辑区域设计扩增与测序引物，建立验证方案</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#0096C7;color:#0096C7;">03</div>
+                        <div class="step-title">阳性材料筛选</div>
+                        <div class="step-desc">通过PCR、酶切或第一步测序结果对编辑材料进行预筛选</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#0096C7;color:#0096C7;">04</div>
+                        <div class="step-title">突变位点判定</div>
+                        <div class="step-desc">对编辑区域进行测序和序列比对，判定突变类型</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#0096C7;color:#0096C7;">05</div>
+                        <div class="step-title">结果整理</div>
+                        <div class="step-desc">输出编辑材料清单、突变类型结果和验证结论</div>
+                    </div>
+                </div>
+            </div>
+            <div class="solution-footer">
+                <p>涉及服务：编辑位点设计支持 | 检测引物设计 | PCR扩增 | 阳性筛选 | 一代测序 | 突变类型分析 | 结果报告</p>
+                <a href="../index.html#contact" class="ask-btn">咨询详情 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- 方案四：病原微生物检测与鉴定 -->
+        <div class="solution-card">
+            <div class="solution-header">
+                <div class="solution-num purple">04</div>
+                <div class="solution-title-wrap">
+                    <h3>病原微生物检测与鉴定</h3>
+                    <p>围绕农业病原菌研究和病害检测需求，提供分子层面的检测、序列比对和鉴定分析</p>
+                </div>
+            </div>
+            <div class="solution-body">
+                <p class="solution-desc">围绕农业病原菌研究和病害检测及病原物鉴定需求，提供从样本检测到结果确认的技术支持服务。可针对植物病原细菌、菌物及其他目标病原物开展分子层面的检测、序列比对和鉴定分析，帮助客户快速确认病原物身份，提高检测准确性，并为后续致病性研究、防控评估和课题分析提供基础依据。</p>
+                <div class="service-tags">
+                    <span class="service-tag orange">样本检测方案</span>
+                    <span class="service-tag orange">目标区域扩增</span>
+                    <span class="service-tag orange">病原分子检测</span>
+                    <span class="service-tag orange">一代测序</span>
+                    <span class="service-tag orange">序列比对</span>
+                    <span class="service-tag orange">同源分析</span>
+                    <span class="service-tag orange">病原鉴定</span>
+                    <span class="service-tag orange">结果整理</span>
+                </div>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#5C6BC0;color:#5C6BC0;">01</div>
+                        <div class="step-title">样本信息整理</div>
+                        <div class="step-desc">根据样本来源、病原类型和检测目的确定技术路线</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#5C6BC0;color:#5C6BC0;">02</div>
+                        <div class="step-title">目标区域扩增</div>
+                        <div class="step-desc">针对常用鉴定区域或特异性序列进行扩增与检测</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#5C6BC0;color:#5C6BC0;">03</div>
+                        <div class="step-title">分子检测测序</div>
+                        <div class="step-desc">对目标片段进行检测和测序，获得基础数据</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#5C6BC0;color:#5C6BC0;">04</div>
+                        <div class="step-title">序列比对鉴定</div>
+                        <div class="step-desc">结合数据库比对和同源分析，对目标病原进行鉴定</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#5C6BC0;color:#5C6BC0;">05</div>
+                        <div class="step-title">结果整理解读</div>
+                        <div class="step-desc">输出检测结果、鉴定结论和基础分析说明</div>
+                    </div>
+                </div>
+            </div>
+            <div class="solution-footer">
+                <p>涉及服务：样本检测 | 目标区域扩增 | 病原分子检测 | 一代测序 | 序列比对 | 同源分析 | 病原鉴定</p>
+                <a href="../index.html#contact" class="ask-btn">咨询详情 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- 方案五：载体构建与序列确认 -->
+        <div class="solution-card">
+            <div class="solution-header">
+                <div class="solution-num orange">05</div>
+                <div class="solution-title-wrap">
+                    <h3>载体构建与序列确认服务</h3>
+                    <p>针对常见分子生物学研究中的载体准备和验证需求，提供完整构建和确认服务</p>
+                </div>
+            </div>
+            <div class="solution-body">
+                <p class="solution-desc">针对常见分子生物学研究中的载体准备和验证需求，提供从构建设计、片段插入到序列确认的完整服务。适用于过表达载体、报告载体、融合表达载体、基因编辑载体等多种构建类型，可帮助客户高效完成构建制备、插入验证和序列确认，确保后续实验使用的载体结果准确可靠。</p>
+                <div class="service-tags">
+                    <span class="service-tag">构建设计</span>
+                    <span class="service-tag">片段扩增</span>
+                    <span class="service-tag">载体组装</span>
+                    <span class="service-tag">阳性筛选</span>
+                    <span class="service-tag">菌液验证</span>
+                    <span class="service-tag">质粒提取</span>
+                    <span class="service-tag">一代测序</span>
+                    <span class="service-tag">插入方向确认</span>
+                    <span class="service-tag">序列一致性分析</span>
+                </div>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#FFA62B;color:#FFA62B;">01</div>
+                        <div class="step-title">构建方案设计</div>
+                        <div class="step-desc">根据目标基因和实验目的制定构建策略，明确插入方式</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#FFA62B;color:#FFA62B;">02</div>
+                        <div class="step-title">片段扩增连接</div>
+                        <div class="step-desc">完成目标片段扩增、酶切及与载体的连接或组装</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#FFA62B;color:#FFA62B;">03</div>
+                        <div class="step-title">阳性筛选确认</div>
+                        <div class="step-desc">通过菌落PCR、酶切或第一步检测方法筛选目标克隆</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#FFA62B;color:#FFA62B;">04</div>
+                        <div class="step-title">载体测序确认</div>
+                        <div class="step-desc">对关键构建进行双测或质粒测序，确认序列准确无误</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num" style="border-color:#FFA62B;color:#FFA62B;">05</div>
+                        <div class="step-title">结果提交汇报</div>
+                        <div class="step-desc">整理构建信息、测序结果和确认结论，便于后续调用</div>
+                    </div>
+                </div>
+            </div>
+            <div class="solution-footer">
+                <p>涉及服务：构建设计 | 片段扩增 | 载体组装 | 阳性筛选 | 菌液验证 | 质粒提取 | 一代测序 | 序列分析</p>
+                <a href="../index.html#contact" class="ask-btn">咨询详情 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+        <h2>开启您的农业科研合作之旅</h2>
+        <p>无论您有单一的测序需求、引物合成，还是需要一个完整的实验方案，我们都可以配合。专注农业科研领域，一对一技术跟进全程跟访，帮您把实验做通。</p>
+        <a href="../index.html#contact" class="cta-btn">立即咨询 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</section>
+
+<!-- 底部 -->
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="../assets/logo.svg" alt="恩博康" width="36" height="36">
+                    <span>恩博康生物</span>
+                </div>
+                <p>专注农业科研领域，提供一代测序、引物合成、生物信息分析、测序试剂耗材一站式服务。</p>
+            </div>
+            <div class="footer-col">
+                <h4>服务项目</h4>
+                <ul>
+                    <li><a href="pages/sanger.html">一代测序</a></li>
+                    <li><a href="pages/primer.html">引物合成</a></li>
+                    <li><a href="bioinfo/index.html">生信分析</a></li>
+                    <li><a href="products/pcr.html">试剂耗材</a></li>
+                    <li><a href="pages/sanger-faq.html">测序常见问题</a></li>
+                    <li><a href="pages/primer-design.html">引物设计指南</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>联系方式</h4>
+                <ul>
+                    <li><i class="fas fa-phone-alt"></i> 13683326312</li>
+                    <li><i class="fas fa-envelope"></i> service@enbokang.com</li>
+                    <li><i class="fas fa-clock"></i> 周一至周日 8:30-21:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 恩博康（北京）生物科技有限公司 ENBOKANG BIO. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    window.addEventListener('scroll', function() {
+        var header = document.getElementById('mainHeader');
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>
+
+</body>
+</html>

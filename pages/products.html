@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品中心 - 恩博康生物</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #a6c81e; }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: #333; background: #f5f5f5; }
+        .top-bar { background: #1B263B; color: #fff; padding: 10px 0; font-size: 13px; }
+        .top-bar .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; }
+        .top-bar-left span { margin-right: 24px; }
+        .top-bar-left i { margin-right: 6px; }
+        .top-bar-right a { color: rgba(255,255,255,0.7); text-decoration: none; margin-left: 16px; }
+        .top-bar-right a:hover { color: #fff; }
+        .main-header { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 100; }
+        .header-inner { max-width: 1400px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 70px; }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo img { width: 42px; height: 42px; margin-right: 10px; }
+        .logo-text { display: flex; flex-direction: column; }
+        .logo-cn { font-size: 18px; font-weight: 700; color: #333; }
+        .logo-en { font-size: 11px; color: #999; letter-spacing: 1px; }
+        .main-nav ul { display: flex; list-style: none; margin: 0; padding: 0; gap: 8px; }
+        .main-nav a { text-decoration: none; color: #555; padding: 8px 16px; border-radius: 4px; transition: all 0.3s; font-size: 15px; }
+        .main-nav a:hover, .main-nav a.active { background: #a6c81e; color: #fff; }
+        .page-header { background: linear-gradient(135deg, #a6c81e 0%, #7a9a0e 100%); padding: 60px 0; color: #fff; text-align: center; }
+        .page-header h1 { font-size: 36px; margin: 0 0 12px; }
+        .page-header p { font-size: 16px; opacity: 0.9; max-width: 700px; margin: 0 auto; line-height: 1.7; }
+        .page-wrapper { max-width: 1400px; margin: 0 auto; padding: 40px 24px; }
+        .cat-block { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 32px; }
+        .cat-header { background: linear-gradient(135deg, #a6c81e, #7a9a0e); padding: 20px 32px; display: flex; align-items: center; gap: 16px; }
+        .cat-header i { font-size: 28px; color: #fff; }
+        .cat-header h2 { font-size: 22px; color: #fff; margin: 0; font-weight: 700; }
+        .cat-header span { font-size: 13px; color: rgba(255,255,255,0.8); margin-left: auto; }
+        .cat-body { padding: 24px 32px; }
+        .cat-section { margin-bottom: 28px; }
+        .cat-section:last-child { margin-bottom: 0; }
+        .cat-section h3 { font-size: 16px; color: #333; margin: 0 0 16px; padding-bottom: 8px; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 8px; }
+        .cat-section h3::before { content: ''; width: 4px; height: 16px; background: #a6c81e; border-radius: 2px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .product-item { display: flex; align-items: center; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; transition: all 0.3s; border: 1px solid transparent; }
+        .product-item:hover { background: #f0f8e8; border-color: #a6c81e40; }
+        .product-name { flex: 1; font-size: 14px; color: #333; }
+        .product-btn { padding: 5px 14px; background: #a6c81e; color: #fff; border-radius: 14px; font-size: 12px; white-space: nowrap; cursor: pointer; transition: all 0.3s; border: none; }
+        .product-btn:hover { background: #7a9a0e; }
+        .wechat-popup { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 9999; align-items: center; justify-content: center; }
+        .wechat-popup-content { background: #fff; border-radius: 16px; padding: 32px; text-align: center; position: relative; max-width: 320px; }
+        .wechat-close { position: absolute; top: 12px; right: 16px; font-size: 28px; cursor: pointer; color: #999; line-height: 1; }
+        .wechat-popup-content img { width: 220px; height: 220px; border-radius: 8px; margin-bottom: 16px; }
+        .wechat-popup-content p { font-size: 16px; color: #666; margin: 0; }
+        .float-contact { position: fixed; right: 20px; bottom: 80px; z-index: 900; display: flex; flex-direction: column; gap: 12px; }
+        .float-item { width: 50px; height: 50px; background: #a6c81e; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.3s; }
+        .float-item:hover { background: #7a9a0e; transform: scale(1.1); }
+        .main-footer { background: #1B263B; color: rgba(255,255,255,0.7); padding: 48px 0 24px; }
+        .main-footer .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+        .footer-bottom { text-align: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; }
+        @media (max-width: 768px) {
+            .main-nav { display: none; }
+            .product-grid { grid-template-columns: 1fr; }
+            .cat-body { padding: 16px; }
+            .page-wrapper { padding: 20px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <span><i class="fas fa-phone-alt"></i> 13683326312</span>
+                <span><i class="fas fa-envelope"></i> service@enbokang.com</span>
+                <span><i class="fas fa-clock"></i> 周一至周日 8:30-21:00</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#"><i class="fas fa-user"></i> 登录</a>
+                <a href="#">注册</a>
+            </div>
+        </div>
+    </div>
+    <header class="main-header">
+        <div class="header-inner">
+            <a href="../index.html" class="logo">
+                <img src="../assets/logo.svg" alt="恩博康生物">
+                <div class="logo-text">
+                    <span class="logo-cn">恩博康生物</span>
+                    <span class="logo-en">ENBOKANG BIO</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="sanger.html">Sanger测序</a></li>
+                    <li><a href="primer.html">引物合成</a></li>
+                    <li><a href="products.html" class="active">产品中心</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>产品中心</h1>
+        <p>覆盖分子生物、蛋白纯化与分析、细胞培养全流程的试剂与耗材，品质保证，价格优惠。一站式采购省心省力。</p>
+    </div>
+
+    <div class="page-wrapper">
+
+        <!-- 分子生物 -->
+        <div class="cat-block">
+            <div class="cat-header">
+                <i class="fas fa-dna"></i>
+                <h2>分子生物</h2>
+                <span>7个子分类 · 68个产品</span>
+            </div>
+            <div class="cat-body">
+
+                <div class="cat-section">
+                    <h3>PCR系列</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">2×Taq PCR MasterMix with loading Dye (Red)</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">2×Taq PCR MasterMix with loading Dye (Green)</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">2×Taq PCR Master Mix with Loading Dye(For PAGE) （丙烯酰胺凝胶电泳检测专用）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">Taq DNA Polymerase</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">2×SuperDi fidelity PCR mix with loading Dye</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">2×SuperDi fidelity PCR mix loading Dye-free</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">2×无染料 SuperDi HS 预混 PCR 反应体系</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">2×SuperDi Max PCR mix with loading Dye</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">2×无染料 SuperDi Max 预混 PCR 反应体系</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">DiFast Taq PCR Master Mix(含染料）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">2×Taq plus PCR Master Mix（含染料）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">2.5mM dNTP Mix</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">10mM dNTP Mix</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+
+                <div class="cat-section">
+                    <h3>qPCR</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">2×Fast qPCR Master Mixture</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">2×Fast qPCR Master Mixture（whith ROX I）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">2×Fast qPCR Master Mixture（whith ROX II）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">2×Fast qPCR Master Mixture（Universal）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+
+                <div class="cat-section">
+                    <h3>核酸电泳</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">100bp DNA Ladder</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">2000bp梯度DNA分子量标准II</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">D2000 DNA Marker New</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">5000bp DNA分子量标准II</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">D2000 plus DNA Marker New</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">DNA Marker I</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">1Kb DNA Ladder</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">1Kb Plus DNA Ladder</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">Marker III</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">D15000 DNA Marker</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">50bp DNA Marker</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">D8000 DNA Marker</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">10,000×DiGreen Safe DNA Dye</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">10,000×DiRed Safe DNA Dye</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">6×DNA loading Buffer</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+
+                <div class="cat-section">
+                    <h3>核酸提取/纯化</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">琼脂糖凝胶回收&DNA纯化试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">高纯质粒小量提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">高纯度质粒中量提试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">去内毒素质粒小量中提试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">去内毒素质粒大提试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">超纯质粒大量提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">溶液型质粒大量提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">微量样本基因组DNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">真菌基因组DNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">血液/组织/细胞基因组DNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">全血/组织/细胞/细菌/昆虫通用型DNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">细菌基因组DNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">植物基因组DNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">植物基因组DNA快速提取试剂盒II型</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">病毒DNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">土壤基因组DNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">TRIpure（总RNA提取试剂）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">全血（液体样品）总RNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">Dispin 微量RNA提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">DiSpin 植物RNA快速提取试剂盒I</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">DiSpin 植物Micro RNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">DiSpin植物/真菌RNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">细菌RNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">DiSpin 通用植物RNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">DiSpin 组织/细胞RNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">植物RNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">含多糖多酚植物RNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">病毒基因组DNA/RNA快速提取试剂盒</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+
+                <div class="cat-section">
+                    <h3>样本采集储存</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">RNA样品储存液</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">核酸清除剂</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">高效RNase清除剂</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">RNAlong RNA长期保存液</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+
+                <div class="cat-section">
+                    <h3>分子克隆</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">Zero pFAST-TA Cloning Kit（连接到涂板整个过程半小时）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">Zero pFAST-TA Simple Cloning Kit（连接到涂板整个过程半小时）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">Zero pFAST-Blunt Cloning Kit（连接到涂板整个过程半小时）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">Zero pFAST-Blunt Simple Cloning Kit（连接到涂板整个过程半小时）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">One Step Seamless Cloning Kit</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">Seamless Assembly and Cloning Kit</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+
+                <div class="cat-section">
+                    <h3>反转录</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">高效第一链cDNA合成试剂盒（复杂模板）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">一管化反转录试剂盒(含基因组DNA去除试剂)</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">cDNA第一链合成试剂盒(含一步法基因组DNA去除试剂)</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">miRNA RT/qPCR Detection 试剂盒 (加尾法)</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">miRNA RT 试剂盒（茎环）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">DEPC处理水</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 蛋白纯化&分析 -->
+        <div class="cat-block">
+            <div class="cat-header" style="background: linear-gradient(135deg, #0096C7, #48CAE4);">
+                <i class="fas fa-flask"></i>
+                <h2>蛋白纯化&amp;分析</h2>
+                <span>4个子分类 · 36个产品</span>
+            </div>
+            <div class="cat-body">
+
+                <div class="cat-section">
+                    <h3>蛋白预制胶</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">蛋白电泳梯度预制胶,4-12%,12孔</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">蛋白电泳梯度预制胶,4-20%,12孔</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">蛋白电泳预制胶,8%,12孔</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">蛋白电泳预制胶,10%,12孔</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">蛋白电泳预制胶,12%,12孔</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">蛋白电泳梯度预制胶,4-12%,15孔</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">蛋白电泳梯度预制胶,4-20%,15孔</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">蛋白电泳预制胶,8%,15孔</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">蛋白电泳预制胶,10%,15孔</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">蛋白电泳预制胶,12%,15孔</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+
+                <div class="cat-section">
+                    <h3>Western blot</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">ECL ENhanced Kit（增强型）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">ECL Super Sensitive Kit（超敏型）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">ECL Super plus（极敏型）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">5×SDS-PAGE Sample Buffer</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">5×Non denatured SDS-PAGE loading Buffer</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">印迹膜再生液</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">无蛋白快速封闭液</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">蛋白酶抑制剂混合液（100×）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">蛋白磷酸酶抑制剂混合液（100×）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">10×快速转膜缓冲液</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">考马斯亮蓝蛋白胶快速染色液</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">1M Tris-HCl，pH 6.8</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">1M Tris-HCl，pH 8.0</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.5M EDTA, pH 8.0</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+
+                <div class="cat-section">
+                    <h3>蛋白电泳</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">彩色预染蛋白Marker I（10-180kDa）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">彩色预染蛋白Marker II（10-180kDa）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">彩色预染蛋白Marker（10-250kDa）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">彩色预染蛋白Marker (10-310kDa)</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">彩色低分子量预染蛋白Marker (2.7-40kDa)</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">彩色预染蛋白Marker (5-245kDa)</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+
+                <div class="cat-section">
+                    <h3>蛋白纯化填料</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">Anti-flag Affinity Beads</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">Anti-HA Affinity Beads</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">Anti-MYC Affinity Beads</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">Flag-tag Peptide</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">HA-tag Peptide</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">MYC-tag Peptide</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 细胞培养 -->
+        <div class="cat-block">
+            <div class="cat-header" style="background: linear-gradient(135deg, #48CAE4, #2ECC71);">
+                <i class="fas fa-vial"></i>
+                <h2>细胞培养</h2>
+                <span>4个子分类 · 9个产品</span>
+            </div>
+            <div class="cat-body">
+                <div class="cat-section">
+                    <h3>细胞增殖</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">细胞增殖/毒性检测试剂盒（CCK8）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+                <div class="cat-section">
+                    <h3>胎牛血清</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">Fetal bovine serum</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">SuperDi Fetal bovine serum</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+                <div class="cat-section">
+                    <h3>转染试剂</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">Super-Transfectin 2.0</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+                <div class="cat-section">
+                    <h3>细胞培养相关产品</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">通用型抗体稀释液</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">RIPA裂解液（强）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">PBS缓冲液（PH7.4）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.25%胰蛋白酶-EDTA</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">无血清细胞冻存液</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 仪器耗材 -->
+        <div class="cat-block">
+            <div class="cat-header" style="background: linear-gradient(135deg, #FFA62B, #E67E22);">
+                <i class="fas fa-box"></i>
+                <h2>仪器耗材</h2>
+                <span>4个子分类 · 33个产品</span>
+            </div>
+            <div class="cat-body">
+                <div class="cat-section">
+                    <h3>qPCR配套耗材</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">透明光学平盖</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.1ml透明八联管（含光学平盖）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.2ml透明八联管（含光学平盖）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.1ml白色八联管（含光学平盖）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.2ml白色八联管（含光学平盖）</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">封板膜</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.1ml透明无裙边96孔板</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.2ml透明无裙边96孔板</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.1ml透明半裙边96孔板</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.2ml透明半裙边96孔板</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.1ml透明全裙边96孔板</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.2ml透明全裙边96孔板</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.1ml白色无裙边96孔板</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.2ml白色无裙边96孔板</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.1ml白色半裙边96孔板</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.1ml白色全裙边96孔板</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.1ml磨砂半裙边96孔板</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">0.2ml磨砂半裙边96孔板</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+                <div class="cat-section">
+                    <h3>普通PCR配套耗材</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">0.2ml PCR管</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">40μl全裙边透明管384孔板</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+                <div class="cat-section">
+                    <h3>通用配套耗材</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">10μl白吸头</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">10μl盒装低吸附白吸头</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">10μl盒装白吸头</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">200μl黄吸头</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">200μl盒装低吸附黄吸头</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">200μl盒装黄吸头</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">1000μl蓝吸头</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">1000μl盒装蓝吸头</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">1250μl加长吸头</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">1.5ml离心管</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">2.0ml离心管</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+                <div class="cat-section">
+                    <h3>高速离心机</h3>
+                    <div class="product-grid">
+                        <div class="product-item"><span class="product-name">高速冷冻离心机</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                        <div class="product-item"><span class="product-name">台式高速离心机</span><button class="product-btn" onclick="showWechatPopup()">咨询报价</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="wechat-popup" id="wechatPopup">
+        <div class="wechat-popup-content">
+            <span class="wechat-close" id="wechatClose">&times;</span>
+            <img src="../WeChat.png" alt="微信二维码">
+            <p>扫码添加好友获取报价</p>
+        </div>
+    </div>
+    <div class="float-contact">
+        <div class="float-item" title="电话咨询" onclick="location.href='tel:13683326312'"><i class="fas fa-phone-alt"></i></div>
+        <div class="float-item" title="微信咨询" onclick="showWechatPopup()"><i class="fab fa-weixin"></i></div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 恩博康（北京）生物科技有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        function showWechatPopup() { document.getElementById('wechatPopup').style.display='flex'; }
+        document.getElementById('wechatClose').onclick=function(){document.getElementById('wechatPopup').style.display='none';};
+        document.getElementById('wechatPopup').addEventListener('click', function(e){ if(e.target===this) this.style.display='none'; });
+    </script>
+</body>
+</html>

@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解决方案 - 恩博康生物</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #a6c81e; --primary-dark: #7a9a0e; --bg-dark: #1B263B; --text-light: rgba(255,255,255,0.85); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif; color: #333; background: #f8faf5; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Top Bar */
+        .top-bar { background: var(--bg-dark); color: #fff; padding: 10px 0; font-size: 13px; }
+        .top-bar .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; }
+        .top-bar-left span { margin-right: 24px; }
+        .top-bar-left i { margin-right: 6px; color: var(--primary); }
+        .top-bar-right a { color: rgba(255,255,255,0.7); margin-left: 16px; transition: color 0.3s; }
+        .top-bar-right a:hover { color: #fff; }
+
+        /* Header */
+        .main-header { background: #fff; box-shadow: 0 2px 16px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 100; }
+        .header-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 70px; }
+        .logo { display: flex; align-items: center; }
+        .logo img { width: 42px; height: 42px; margin-right: 10px; }
+        .logo-cn { font-size: 18px; font-weight: 700; color: #333; }
+        .logo-en { font-size: 11px; color: #999; letter-spacing: 1px; }
+        .main-nav ul { display: flex; list-style: none; gap: 8px; }
+        .main-nav a { color: #555; padding: 8px 16px; border-radius: 6px; font-size: 15px; transition: all 0.3s; }
+        .main-nav a:hover, .main-nav a.active { background: var(--primary); color: #fff; }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, #1B263B 0%, #2d4a1e 40%, #5a8a00 100%);
+            padding: 80px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23a6c81e' opacity='0.06'%3E%3Ccircle cx='40' cy='40' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .page-hero h1 { font-size: 40px; color: #fff; font-weight: 900; margin-bottom: 16px; position: relative; }
+        .page-hero p { font-size: 16px; color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto; line-height: 1.7; position: relative; }
+
+        /* Nav Tabs */
+        .solution-nav {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 70px;
+            z-index: 90;
+        }
+        .solution-nav .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; gap: 0; overflow-x: auto; }
+        .nav-tab {
+            padding: 18px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-tab i { font-size: 16px; color: #bbb; transition: color 0.3s; }
+        .nav-tab:hover { color: var(--primary); }
+        .nav-tab:hover i { color: var(--primary); }
+        .nav-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+        .nav-tab.active i { color: var(--primary); }
+
+        /* Page Wrapper */
+        .page-wrapper { max-width: 1280px; margin: 0 auto; padding: 40px 24px 80px; }
+
+        /* Solution Section */
+        .solution-section { display: none; }
+        .solution-section.active { display: block; }
+
+        /* Solution Hero Card */
+        .sol-hero {
+            background: linear-gradient(135deg, #1B263B, #2d4a1e);
+            border-radius: 20px;
+            padding: 48px;
+            margin-bottom: 32px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .sol-hero::after {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 200px; height: 200px;
+            background: rgba(166,200,30,0.12);
+            border-radius: 50%;
+        }
+        .sol-hero-badge {
+            display: inline-block;
+            background: rgba(166,200,30,0.2);
+            border: 1px solid rgba(166,200,30,0.4);
+            color: #a6c81e;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        .sol-hero h2 {
+            font-size: 30px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        .sol-hero h2 span { color: #a6c81e; }
+        .sol-hero-desc {
+            font-size: 15px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.8;
+            max-width: 700px;
+        }
+
+        /* Flow Section */
+        .sol-flow {
+            background: #fff;
+            border-radius: 16px;
+            padding: 36px 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+        .sol-flow-title {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .sol-flow-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, #e8f4d0, transparent);
+        }
+        .sol-steps {
+            display: flex;
+            gap: 0;
+            position: relative;
+        }
+        .sol-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            padding: 0 8px;
+        }
+        .sol-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 28px;
+            right: -12px;
+            width: 24px;
+            height: 2px;
+            background: linear-gradient(90deg, #a6c81e, #c8e090);
+            z-index: 1;
+        }
+        .sol-step-num {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #a6c81e, #7a9a0e);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 900;
+            margin: 0 auto 14px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 16px rgba(166,200,30,0.3);
+        }
+        .sol-step-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        .sol-step-sub {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* Services Cards */
+        .sol-services {
+            background: #fff;
+            border-radius: 16px;
+            padding: 36px 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+        .sol-services-title {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        .sol-service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 12px;
+        }
+        .sol-service-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: #f8fbf0;
+            border-radius: 10px;
+            border: 1px solid #e8f4d0;
+            transition: all 0.3s;
+        }
+        .sol-service-item:hover {
+            background: #eef6d8;
+            border-color: #a6c81e;
+            transform: translateY(-2px);
+        }
+        .sol-service-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #a6c81e, #7a9a0e);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .sol-service-icon i { font-size: 14px; color: #fff; }
+        .sol-service-item span { font-size: 14px; font-weight: 500; color: #444; }
+
+        /* CTA Section */
+        .sol-cta {
+            background: linear-gradient(135deg, #a6c81e, #7a9a0e);
+            border-radius: 16px;
+            padding: 40px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        .sol-cta-text h3 { font-size: 22px; color: #fff; font-weight: 800; margin-bottom: 6px; }
+        .sol-cta-text p { font-size: 14px; color: rgba(255,255,255,0.8); }
+        .sol-cta-actions { display: flex; gap: 12px; flex-shrink: 0; }
+        .sol-cta-btn {
+            padding: 12px 28px;
+            border-radius: 24px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .sol-cta-btn-white {
+            background: #fff;
+            color: #7a9a0e;
+        }
+        .sol-cta-btn-white:hover { background: #f0f8e0; transform: translateY(-2px); }
+        .sol-cta-btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+        .sol-cta-btn-outline:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+
+        /* Features Grid */
+        .sol-features {
+            background: #fff;
+            border-radius: 16px;
+            padding: 36px 40px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
+        }
+        .sol-features-title {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+        .sol-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .sol-feature-item {
+            display: flex;
+            gap: 14px;
+            padding: 16px;
+            border-radius: 12px;
+            background: #f9faf8;
+            transition: all 0.3s;
+        }
+        .sol-feature-item:hover { background: #f0f8e0; }
+        .sol-feature-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #a6c81e20, #7a9a0e20);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .sol-feature-icon i { font-size: 18px; color: var(--primary); }
+        .sol-feature-item h4 { font-size: 14px; font-weight: 700; color: #333; margin-bottom: 4px; }
+        .sol-feature-item p { font-size: 12px; color: #888; line-height: 1.6; }
+
+        /* Footer */
+        .main-footer { background: var(--bg-dark); color: rgba(255,255,255,0.6); padding: 40px 0 20px; }
+        .main-footer .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; }
+
+        /* Float Contact */
+        .float-contact { position: fixed; right: 20px; bottom: 80px; z-index: 900; display: flex; flex-direction: column; gap: 12px; }
+        .float-item { width: 50px; height: 50px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.3s; }
+        .float-item:hover { background: var(--primary-dark); transform: scale(1.1); }
+
+        /* WeChat Popup */
+        .wechat-popup { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 9999; align-items: center; justify-content: center; }
+        .wechat-popup-content { background: #fff; border-radius: 16px; padding: 32px; text-align: center; position: relative; max-width: 320px; }
+        .wechat-close { position: absolute; top: 12px; right: 16px; font-size: 28px; cursor: pointer; color: #999; line-height: 1; }
+        .wechat-popup-content img { width: 220px; height: 220px; border-radius: 8px; margin-bottom: 16px; }
+        .wechat-popup-content p { font-size: 15px; color: #666; margin: 0; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .sol-steps { flex-wrap: wrap; gap: 20px; }
+            .sol-step { flex: 0 0 calc(33.333% - 14px); }
+            .sol-step:not(:last-child)::after { display: none; }
+            .sol-hero { padding: 32px 24px; }
+            .sol-hero h2 { font-size: 24px; }
+            .sol-flow, .sol-services, .sol-features { padding: 24px; }
+            .sol-cta { flex-direction: column; text-align: center; padding: 28px 24px; }
+            .sol-cta-actions { flex-wrap: wrap; justify-content: center; }
+            .main-nav { display: none; }
+        }
+        @media (max-width: 600px) {
+            .sol-step { flex: 0 0 calc(50% - 10px); }
+            .sol-service-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <span><i class="fas fa-phone-alt"></i> 13683326312</span>
+                <span><i class="fas fa-envelope"></i> service@enbokang.com</span>
+                <span><i class="fas fa-clock"></i> 周一至周日 8:30-21:00</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#">登录</a>
+                <a href="#">注册</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-inner">
+            <a href="../index.html" class="logo">
+                <img src="../assets/logo.svg" alt="恩博康生物">
+                <div>
+                    <div class="logo-cn">恩博康生物</div>
+                    <div class="logo-en">ENBOKANG BIO</div>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="services.html">技术服务</a></li>
+                    <li><a href="products/pcr.html">产品中心</a></li>
+                    <li><a href="solutions.html" class="active">解决方案</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <h1>农业科研解决方案</h1>
+        <p>针对农业科研高频场景，提供从实验设计到结果验证的完整方案，覆盖作物育种、植物分子、植病植保、基因编辑全流程</p>
+    </div>
+
+    <nav class="solution-nav">
+        <div class="container">
+            <div class="nav-tab active" data-target="crop">
+                <i class="fas fa-seedling"></i> 作物功能基因验证
+            </div>
+            <div class="nav-tab" data-target="breeding">
+                <i class="fas fa-leaf"></i> 分子标记辅助育种
+            </div>
+            <div class="nav-tab" data-target="editing">
+                <i class="fas fa-cut"></i> 基因编辑验证
+            </div>
+            <div class="nav-tab" data-target="pathogen">
+                <i class="fas fa-bacterium"></i> 病原微生物鉴定
+            </div>
+            <div class="nav-tab" data-target="vector-sol">
+                <i class="fas fa-vector-square"></i> 载体构建验证
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-wrapper">
+
+        <!-- 作物功能基因验证 -->
+        <div class="solution-section active" id="crop">
+            <div class="sol-hero">
+                <div class="sol-hero-badge">CORE SOLUTION</div>
+                <h2><i class="fas fa-seedling"></i> 作物功能基因<span>验证</span></h2>
+                <p class="sol-hero-desc">从目标基因筛选到功能验证，提供完整的技术支持和服务体系。覆盖基因克隆、载体构建、转化验证、测序确认全流程。</p>
+            </div>
+
+            <div class="sol-flow">
+                <div class="sol-flow-title"><i class="fas fa-route"></i> 服务流程</div>
+                <div class="sol-steps">
+                    <div class="sol-step">
+                        <div class="sol-step-num">01</div>
+                        <div class="sol-step-label">基因克隆</div>
+                        <div class="sol-step-sub">目标基因获取</div>
+                    </div>
+                    <div class="sol-step">
+                        <div class="sol-step-num">02</div>
+                        <div class="sol-step-label">载体构建</div>
+                        <div class="sol-step-sub">表达载体组装</div>
+                    </div>
+                    <div class="sol-step">
+                        <div class="sol-step-num">03</div>
+                        <div class="sol-step-label">转化验证</div>
+                        <div class="sol-step-sub">遗传转化检测</div>
+                    </div>
+                    <div class="sol-step">
+                        <div class="sol-step-num">04</div>
+                        <div class="sol-step-label">测序确认</div>
+                        <div class="sol-step-sub">Sanger验证</div>
+                    </div>
+                    <div class="sol-step">
+                        <div class="sol-step-num">05</div>
+                        <div class="sol-step-label">功能分析</div>
+                        <div class="sol-step-sub">表型评估</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sol-services">
+                <div class="sol-services-title"><i class="fas fa-th-large"></i> 涉及服务</div>
+                <div class="sol-service-grid">
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-pencil-ruler"></i></div><span>引物设计</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-dna"></i></div><span>PCR扩增</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-project-diagram"></i></div><span>载体构建</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-pulse"></i></div><span>一代测序</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-headset"></i></div><span>技术支持</span></div>
+                </div>
+            </div>
+
+            <div class="sol-features">
+                <div class="sol-features-title"><i class="fas fa-star"></i> 方案优势</div>
+                <div class="sol-features-grid">
+                    <div class="sol-feature-item">
+                        <div class="sol-feature-icon"><i class="fas fa-bolt"></i></div>
+                        <div><h4>快速交付</h4><p>标准化流程，最快3个工作日完成</p></div>
+                    </div>
+                    <div class="sol-feature-item">
+                        <div class="sol-feature-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div><h4>质量保证</h4><p>每步测序验证，确保结果准确</p></div>
+                    </div>
+                    <div class="sol-feature-item">
+                        <div class="sol-feature-icon"><i class="fas fa-users"></i></div>
+                        <div><h4>一对一服务</h4><p>专属技术顾问全程跟进</p></div>
+                    </div>
+                    <div class="sol-feature-item">
+                        <div class="sol-feature-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <div><h4>灵活报价</h4><p>按项目实际需求定制方案</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sol-cta">
+                <div class="sol-cta-text">
+                    <h3>立即开始您的实验方案</h3>
+                    <p>专注农业科研，一站式服务，帮您把实验做通</p>
+                </div>
+                <div class="sol-cta-actions">
+                    <button class="sol-cta-btn sol-cta-btn-white" onclick="showWechatPopup()"><i class="fas fa-comment-dots"></i> 免费咨询</button>
+                    <button class="sol-cta-btn sol-cta-btn-outline" onclick="location.href='tel:13683326312'"><i class="fas fa-phone-alt"></i> 电话咨询</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分子标记辅助育种 -->
+        <div class="solution-section" id="breeding">
+            <div class="sol-hero">
+                <div class="sol-hero-badge">CORE SOLUTION</div>
+                <h2><i class="fas fa-leaf"></i> 分子标记辅助<span>育种</span></h2>
+                <p class="sol-hero-desc">SSR、InDel、SNP等分子标记的开发、验证与应用，加速育种进程。提供从标记筛选到群体检测的完整解决方案。</p>
+            </div>
+            <div class="sol-flow">
+                <div class="sol-flow-title"><i class="fas fa-route"></i> 服务流程</div>
+                <div class="sol-steps">
+                    <div class="sol-step">
+                        <div class="sol-step-num">01</div>
+                        <div class="sol-step-label">标记筛选</div>
+                        <div class="sol-step-sub">文献/数据库挖掘</div>
+                    </div>
+                    <div class="sol-step">
+                        <div class="sol-step-num">02</div>
+                        <div class="sol-step-label">引物设计</div>
+                        <div class="sol-step-sub">特异性引物合成</div>
+                    </div>
+                    <div class="sol-step">
+                        <div class="sol-step-num">03</div>
+                        <div class="sol-step-label">PCR验证</div>
+                        <div class="sol-step-sub">多态性检测</div>
+                    </div>
+                    <div class="sol-step">
+                        <div class="sol-step-num">04</div>
+                        <div class="sol-step-label">测序确认</div>
+                        <div class="sol-step-sub">Sanger验证</div>
+                    </div>
+                    <div class="sol-step">
+                        <div class="sol-step-num">05</div>
+                        <div class="sol-step-label">群体检测</div>
+                        <div class="sol-step-sub">大样本分析</div>
+                    </div>
+                </div>
+            </div>
+            <div class="sol-services">
+                <div class="sol-services-title"><i class="fas fa-th-large"></i> 涉及服务</div>
+                <div class="sol-service-grid">
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-pencil-ruler"></i></div><span>引物合成</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-dna"></i></div><span>PCR体系优化</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-pulse"></i></div><span>一代测序</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-chart-bar"></i></div><span>结果分析</span></div>
+                </div>
+            </div>
+            <div class="sol-features">
+                <div class="sol-features-title"><i class="fas fa-star"></i> 方案优势</div>
+                <div class="sol-features-grid">
+                    <div class="sol-feature-item">
+                        <div class="sol-feature-icon"><i class="fas fa-bolt"></i></div>
+                        <div><h4>快速交付</h4><p>标准化流程，最快3个工作日完成</p></div>
+                    </div>
+                    <div class="sol-feature-item">
+                        <div class="sol-feature-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div><h4>质量保证</h4><p>每步测序验证，确保结果准确</p></div>
+                    </div>
+                    <div class="sol-feature-item">
+                        <div class="sol-feature-icon"><i class="fas fa-users"></i></div>
+                        <div><h4>一对一服务</h4><p>专属技术顾问全程跟进</p></div>
+                    </div>
+                    <div class="sol-feature-item">
+                        <div class="sol-feature-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <div><h4>灵活报价</h4><p>按项目实际需求定制方案</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sol-cta">
+                <div class="sol-cta-text">
+                    <h3>立即开始您的实验方案</h3>
+                    <p>专注农业科研，一站式服务，帮您把实验做通</p>
+                </div>
+                <div class="sol-cta-actions">
+                    <button class="sol-cta-btn sol-cta-btn-white" onclick="showWechatPopup()"><i class="fas fa-comment-dots"></i> 免费咨询</button>
+                    <button class="sol-cta-btn sol-cta-btn-outline" onclick="location.href='tel:13683326312'"><i class="fas fa-phone-alt"></i> 电话咨询</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 基因编辑验证 -->
+        <div class="solution-section" id="editing">
+            <div class="sol-hero">
+                <div class="sol-hero-badge">CORE SOLUTION</div>
+                <h2><i class="fas fa-cut"></i> 基因编辑<span>验证</span></h2>
+                <p class="sol-hero-desc">CRISPR/Cas9等基因编辑结果的定点验证，快速确认编辑效率和突变类型，提供从sgRNA设计到突变分析的全流程支持。</p>
+            </div>
+            <div class="sol-flow">
+                <div class="sol-flow-title"><i class="fas fa-route"></i> 服务流程</div>
+                <div class="sol-steps">
+                    <div class="sol-step">
+                        <div class="sol-step-num">01</div>
+                        <div class="sol-step-label">位点设计</div>
+                        <div class="sol-step-sub">sgRNA设计</div>
+                    </div>
+                    <div class="sol-step">
+                        <div class="sol-step-num">02</div>
+                        <div class="sol-step-label">引物合成</div>
+                        <div class="sol-step-sub">特异性引物合成</div>
+                    </div>
+                    <div class="sol-step">
+                        <div class="sol-step-num">03</div>
+                        <div class="sol-step-label">PCR扩增</div>
+                        <div class="sol-step-sub">靶区域扩增</div>
+                    </div>
+                    <div class="sol-step">
+                        <div class="sol-step-num">04</div>
+                        <div class="sol-step-label">测序检测</div>
+                        <div class="sol-step-sub">Sanger测序</div>
+                    </div>
+                    <div class="sol-step">
+                        <div class="sol-step-num">05</div>
+                        <div class="sol-step-label">突变分析</div>
+                        <div class="sol-step-sub">编辑效率评估</div>
+                    </div>
+                </div>
+            </div>
+            <div class="sol-services">
+                <div class="sol-services-title"><i class="fas fa-th-large"></i> 涉及服务</div>
+                <div class="sol-service-grid">
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-pencil-ruler"></i></div><span>sgRNA设计</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-pencil-alt"></i></div><span>引物合成</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-pulse"></i></div><span>一代测序</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-chart-line"></i></div><span>突变分析</span></div>
+                </div>
+            </div>
+            <div class="sol-features">
+                <div class="sol-features-title"><i class="fas fa-star"></i> 方案优势</div>
+                <div class="sol-features-grid">
+                    <div class="sol-feature-item"><div class="sol-feature-icon"><i class="fas fa-bolt"></i></div><div><h4>快速交付</h4><p>标准化流程，最快3个工作日完成</p></div></div>
+                    <div class="sol-feature-item"><div class="sol-feature-icon"><i class="fas fa-shield-alt"></i></div><div><h4>质量保证</h4><p>每步测序验证，确保结果准确</p></div></div>
+                    <div class="sol-feature-item"><div class="sol-feature-icon"><i class="fas fa-users"></i></div><div><h4>一对一服务</h4><p>专属技术顾问全程跟进</p></div></div>
+                    <div class="sol-feature-item"><div class="sol-feature-icon"><i class="fas fa-file-invoice-dollar"></i></div><div><h4>灵活报价</h4><p>按项目实际需求定制方案</p></div></div>
+                </div>
+            </div>
+            <div class="sol-cta">
+                <div class="sol-cta-text"><h3>立即开始您的实验方案</h3><p>专注农业科研，一站式服务，帮您把实验做通</p></div>
+                <div class="sol-cta-actions">
+                    <button class="sol-cta-btn sol-cta-btn-white" onclick="showWechatPopup()"><i class="fas fa-comment-dots"></i> 免费咨询</button>
+                    <button class="sol-cta-btn sol-cta-btn-outline" onclick="location.href='tel:13683326312'"><i class="fas fa-phone-alt"></i> 电话咨询</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 病原微生物鉴定 -->
+        <div class="solution-section" id="pathogen">
+            <div class="sol-hero">
+                <div class="sol-hero-badge">CORE SOLUTION</div>
+                <h2><i class="fas fa-bacterium"></i> 病原微生物<span>鉴定</span></h2>
+                <p class="sol-hero-desc">基于16S rDNA/ITS等保守序列的病原菌和真菌鉴定，快速准确。提供从DNA提取到报告出具的全流程服务。</p>
+            </div>
+            <div class="sol-flow">
+                <div class="sol-flow-title"><i class="fas fa-route"></i> 服务流程</div>
+                <div class="sol-steps">
+                    <div class="sol-step"><div class="sol-step-num">01</div><div class="sol-step-label">DNA提取</div><div class="sol-step-sub">样本处理</div></div>
+                    <div class="sol-step"><div class="sol-step-num">02</div><div class="sol-step-label">PCR扩增</div><div class="sol-step-sub">保守区扩增</div></div>
+                    <div class="sol-step"><div class="sol-step-num">03</div><div class="sol-step-label">测序分析</div><div class="sol-step-sub">Sanger测序</div></div>
+                    <div class="sol-step"><div class="sol-step-num">04</div><div class="sol-step-label">比对鉴定</div><div class="sol-step-sub">Blast比对</div></div>
+                    <div class="sol-step"><div class="sol-step-num">05</div><div class="sol-step-label">报告出具</div><div class="sol-step-sub">鉴定报告</div></div>
+                </div>
+            </div>
+            <div class="sol-services">
+                <div class="sol-services-title"><i class="fas fa-th-large"></i> 涉及服务</div>
+                <div class="sol-service-grid">
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-flask"></i></div><span>DNA提取</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-dna"></i></div><span>通用引物</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-pulse"></i></div><span>一代测序</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-search"></i></div><span>Blast比对</span></div>
+                </div>
+            </div>
+            <div class="sol-features">
+                <div class="sol-features-title"><i class="fas fa-star"></i> 方案优势</div>
+                <div class="sol-features-grid">
+                    <div class="sol-feature-item"><div class="sol-feature-icon"><i class="fas fa-bolt"></i></div><div><h4>快速交付</h4><p>标准化流程，最快3个工作日完成</p></div></div>
+                    <div class="sol-feature-item"><div class="sol-feature-icon"><i class="fas fa-shield-alt"></i></div><div><h4>质量保证</h4><p>每步测序验证，确保结果准确</p></div></div>
+                    <div class="sol-feature-item"><div class="sol-feature-icon"><i class="fas fa-users"></i></div><div><h4>一对一服务</h4><p>专属技术顾问全程跟进</p></div></div>
+                    <div class="sol-feature-item"><div class="sol-feature-icon"><i class="fas fa-file-invoice-dollar"></i></div><div><h4>灵活报价</h4><p>按项目实际需求定制方案</p></div></div>
+                </div>
+            </div>
+            <div class="sol-cta">
+                <div class="sol-cta-text"><h3>立即开始您的实验方案</h3><p>专注农业科研，一站式服务，帮您把实验做通</p></div>
+                <div class="sol-cta-actions">
+                    <button class="sol-cta-btn sol-cta-btn-white" onclick="showWechatPopup()"><i class="fas fa-comment-dots"></i> 免费咨询</button>
+                    <button class="sol-cta-btn sol-cta-btn-outline" onclick="location.href='tel:13683326312'"><i class="fas fa-phone-alt"></i> 电话咨询</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 载体构建验证 -->
+        <div class="solution-section" id="vector-sol">
+            <div class="sol-hero">
+                <div class="sol-hero-badge">CORE SOLUTION</div>
+                <h2><i class="fas fa-vector-square"></i> 载体构建<span>验证</span></h2>
+                <p class="sol-hero-desc">从载体设计、酶切连接到阳性筛选测序验证，全程技术服务配合。提供专业的克隆构建和验证方案。</p>
+            </div>
+            <div class="sol-flow">
+                <div class="sol-flow-title"><i class="fas fa-route"></i> 服务流程</div>
+                <div class="sol-steps">
+                    <div class="sol-step"><div class="sol-step-num">01</div><div class="sol-step-label">载体设计</div><div class="sol-step-sub">方案规划</div></div>
+                    <div class="sol-step"><div class="sol-step-num">02</div><div class="sol-step-label">酶切连接</div><div class="sol-step-sub">片段组装</div></div>
+                    <div class="sol-step"><div class="sol-step-num">03</div><div class="sol-step-label">转化筛选</div><div class="sol-step-sub">阳性克隆</div></div>
+                    <div class="sol-step"><div class="sol-step-num">04</div><div class="sol-step-label">菌落PCR</div><div class="sol-step-sub">快速鉴定</div></div>
+                    <div class="sol-step"><div class="sol-step-num">05</div><div class="sol-step-label">测序验证</div><div class="sol-step-sub">Sanger确认</div></div>
+                </div>
+            </div>
+            <div class="sol-services">
+                <div class="sol-services-title"><i class="fas fa-th-large"></i> 涉及服务</div>
+                <div class="sol-service-grid">
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-project-diagram"></i></div><span>载体构建</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-cube"></i></div><span>感受态细胞</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-vial"></i></div><span>菌液测序</span></div>
+                    <div class="sol-service-item"><div class="sol-service-icon"><i class="fas fa-pencil-ruler"></i></div><span>引物设计</span></div>
+                </div>
+            </div>
+            <div class="sol-features">
+                <div class="sol-features-title"><i class="fas fa-star"></i> 方案优势</div>
+                <div class="sol-features-grid">
+                    <div class="sol-feature-item"><div class="sol-feature-icon"><i class="fas fa-bolt"></i></div><div><h4>快速交付</h4><p>标准化流程，最快3个工作日完成</p></div></div>
+                    <div class="sol-feature-item"><div class="sol-feature-icon"><i class="fas fa-shield-alt"></i></div><div><h4>质量保证</h4><p>每步测序验证，确保结果准确</p></div></div>
+                    <div class="sol-feature-item"><div class="sol-feature-icon"><i class="fas fa-users"></i></div><div><h4>一对一服务</h4><p>专属技术顾问全程跟进</p></div></div>
+                    <div class="sol-feature-item"><div class="sol-feature-icon"><i class="fas fa-file-invoice-dollar"></i></div><div><h4>灵活报价</h4><p>按项目实际需求定制方案</p></div></div>
+                </div>
+            </div>
+            <div class="sol-cta">
+                <div class="sol-cta-text"><h3>立即开始您的实验方案</h3><p>专注农业科研，一站式服务，帮您把实验做通</p></div>
+                <div class="sol-cta-actions">
+                    <button class="sol-cta-btn sol-cta-btn-white" onclick="showWechatPopup()"><i class="fas fa-comment-dots"></i> 免费咨询</button>
+                    <button class="sol-cta-btn sol-cta-btn-outline" onclick="location.href='tel:13683326312'"><i class="fas fa-phone-alt"></i> 电话咨询</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="wechat-popup" id="wechatPopup">
+        <div class="wechat-popup-content">
+            <span class="wechat-close" id="wechatClose">&times;</span>
+            <img src="../WeChat.png" alt="微信二维码">
+            <p>扫码添加好友获取报价</p>
+        </div>
+    </div>
+    <div class="float-contact">
+        <div class="float-item" onclick="location.href='tel:13683326312'"><i class="fas fa-phone-alt"></i></div>
+        <div class="float-item" onclick="showWechatPopup()"><i class="fab fa-weixin"></i></div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 恩博康（北京）生物科技有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showWechatPopup() { document.getElementById('wechatPopup').style.display='flex'; }
+        document.getElementById('wechatClose').onclick=function(){document.getElementById('wechatPopup').style.display='none';};
+        document.getElementById('wechatPopup').addEventListener('click', function(e){ if(e.target===this) this.style.display='none'; });
+
+        // Tab switching
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelectorAll('.solution-section').forEach(s => s.classList.remove('active'));
+                const target = this.getAttribute('data-target');
+                document.getElementById(target).classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Handle hash on load
+        if (window.location.hash) {
+            const hash = window.location.hash.substring(1);
+            const tab = document.querySelector('.nav-tab[data-target="'+hash+'"]');
+            if (tab) tab.click();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanger测序服务 - 恩博康生物</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header { background: linear-gradient(135deg, #a6c81e 0%, #6a9e0a 100%); padding: 80px 0; color: #fff; }
+        .page-header h1 { font-size: 40px; margin: 0 0 16px; font-weight: 700; }
+        .page-header p { font-size: 18px; margin: 0; opacity: 0.9; line-height: 1.7; max-width: 700px; }
+        .page-nav { background: #fff; border-bottom: 1px solid #eee; padding: 16px 0; }
+        .page-nav .container { display: flex; gap: 24px; flex-wrap: wrap; }
+        .page-nav a { color: #666; font-size: 14px; padding: 8px 16px; border-radius: 20px; transition: all 0.3s; }
+        .page-nav a:hover, .page-nav a.active { background: #a6c81e; color: #fff; }
+        .section { padding: 60px 0; }
+        .section.gray { background: #f8f9fa; }
+        .section-header { text-align: center; margin-bottom: 48px; }
+        .section-header .tag { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 3px; color: #a6c81e; text-transform: uppercase; margin-bottom: 8px; }
+        .section-header h2 { font-size: 32px; color: #333; margin: 0 0 12px; }
+        .section-header p { font-size: 16px; color: #666; margin: 0; }
+        .advantage-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 32px; }
+        .advantage-card { background: #fff; border-radius: 12px; padding: 28px 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.06); transition: all 0.3s; }
+        .advantage-card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        .advantage-card .icon { width: 64px; height: 64px; background: linear-gradient(135deg, #a6c81e, #6a9e0a); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+        .advantage-card .icon i { font-size: 28px; color: #fff; }
+        .advantage-card h3 { font-size: 18px; color: #333; margin: 0 0 8px; }
+        .advantage-card p { font-size: 14px; color: #666; margin: 0; line-height: 1.5; }
+        .process-flow { display: flex; justify-content: space-between; margin-top: 48px; position: relative; }
+        .process-flow::before { content: ''; position: absolute; top: 40px; left: 10%; right: 10%; height: 3px; background: linear-gradient(90deg, #a6c81e, #6a9e0a); z-index: 0; }
+        .process-step { text-align: center; position: relative; z-index: 1; flex: 1; }
+        .process-step .num { width: 80px; height: 80px; background: linear-gradient(135deg, #a6c81e, #6a9e0a); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; box-shadow: 0 4px 12px rgba(166,200,30,0.3); }
+        .process-step .num span { font-size: 28px; font-weight: 700; color: #fff; }
+        .process-step h4 { font-size: 16px; color: #333; margin: 0 0 4px; }
+        .process-step p { font-size: 13px; color: #888; margin: 0; }
+        .seq-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+        .seq-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.06); transition: all 0.3s; }
+        .seq-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+        .seq-card .card-img { height: 140px; background: linear-gradient(135deg, #a6c81e, #6a9e0a); display: flex; align-items: center; justify-content: center; }
+        .seq-card .card-img i { font-size: 56px; color: rgba(255,255,255,0.8); }
+        .seq-card .card-body { padding: 24px; }
+        .seq-card h3 { font-size: 20px; color: #333; margin: 0 0 10px; }
+        .seq-card p { font-size: 14px; color: #666; margin: 0 0 16px; line-height: 1.6; }
+        .seq-card .features { list-style: none; padding: 0; margin: 0 0 16px; }
+        .seq-card .features li { padding: 6px 0; font-size: 13px; color: #555; display: flex; align-items: center; gap: 8px; }
+        .seq-card .features li i { color: #a6c81e; font-size: 14px; }
+        .seq-card .btn { display: block; text-align: center; padding: 10px; background: #a6c81e; color: #fff; border-radius: 8px; font-size: 14px; }
+        .seq-card .btn:hover { background: #6a9e0a; }
+        .price-table { width: 100%; border-collapse: collapse; margin-top: 24px; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+        .price-table th { background: #a6c81e; color: #fff; padding: 16px; text-align: left; font-size: 15px; }
+        .price-table td { padding: 14px 16px; border-bottom: 1px solid #eee; font-size: 14px; color: #555; }
+        .price-table tr:last-child td { border-bottom: none; }
+        .price-table tr:hover { background: #f8f9fa; }
+        .cta-section { background: linear-gradient(135deg, #a6c81e, #6a9e0a); padding: 80px 0; text-align: center; }
+        .cta-section h2 { color: #fff; font-size: 32px; margin: 0 0 16px; }
+        .cta-section p { color: rgba(255,255,255,0.9); font-size: 16px; margin: 0 0 24px; }
+        .cta-section .btn { display: inline-block; background: #fff; color: #a6c81e; padding: 16px 48px; border-radius: 30px; font-size: 18px; font-weight: 600; text-decoration: none; }
+        .cta-section .btn:hover { transform: scale(1.05); }
+        @media (max-width: 768px) {
+            .advantage-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-flow { flex-direction: column; gap: 32px; }
+            .process-flow::before { display: none; }
+            .seq-types { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <span><i class="fas fa-phone-alt"></i> 13683326312</span>
+                <span><i class="fas fa-envelope"></i> service@enbokang.com</span>
+                <span><i class="fas fa-clock"></i> 周一至周日 8:30-21:00</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#"><i class="fas fa-user"></i> 登录</a>
+                <a href="#">注册</a>
+            </div>
+        </div>
+    </div>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <a href="../index.html">
+                        <div class="logo-icon"><img src="../assets/logo.svg" alt="恩博康生物" width="42" height="42"></div>
+                        <div class="logo-text"><span class="logo-cn">恩博康生物</span><span class="logo-en">ENBOKANG BIO</span></div>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="../index.html">首页</a></li>
+                        <li class="active"><a href="sanger.html">Sanger测序</a></li>
+                        <li><a href="primer.html">引物合成</a></li>
+                        <li><a href="products/pcr.html">产品中心</a></li>
+                        <li><a href="./contact.html">联系我们</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <a href="#" class="btn-order">在线下单</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Sanger测序服务</h1>
+            <p>专注Sanger测序，实验解决方案提供者</p>
+        </div>
+    </div>
+
+    <div class="page-nav">
+        <div class="container">
+            <a href="#advantage">测序优势</a>
+            <a href="#types">服务类型</a>
+            <a href="#process">测序流程</a>
+            <a href="#price">价格说明</a>
+        </div>
+    </div>
+
+    <section class="section gray" id="advantage">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">ADVANTAGES</span>
+                <h2>测序优势</h2>
+                <p>为什么选择恩博康Sanger测序服务</p>
+            </div>
+            <div class="advantage-grid">
+                <div class="advantage-card">
+                    <div class="icon"><i class="fas fa-bolt"></i></div>
+                    <h3>快速交单</h3>
+                    <p>常规测序24小时出具，加急服务12小时出结果</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="icon"><i class="fas fa-check-circle"></i></div>
+                    <h3>质量保证</h3>
+                    <p>测序成功率99%，免费重测保证</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="icon"><i class="fas fa-gift"></i></div>
+                    <h3>免费引物</h3>
+                    <p>提供通用测序引物，无需额外购买</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="icon"><i class="fas fa-headset"></i></div>
+                    <h3>技术支持</h3>
+                    <p>一对一测序结果解读与问题分析</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="types">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">TYPES</span>
+                <h2>服务类型</h2>
+                <p>多种测序方案，满足不同实验需求</p>
+            </div>
+            <div class="seq-types">
+                <div class="seq-card">
+                    <div class="card-img"><i class="fas fa-dna"></i></div>
+                    <div class="card-body">
+                        <h3>质粒测序</h3>
+                        <p>适用于常规质粒DNA测序验证，支持常见质粒位点</p>
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> 质粒DNA测序</li>
+                            <li><i class="fas fa-check"></i> 片段测序验证</li>
+                            <li><i class="fas fa-check"></i> 突变点确认</li>
+                        </ul>
+                        <a href="./contact.html" class="btn">立即咨询</a>
+                    </div>
+                </div>
+                <div class="seq-card">
+                    <div class="card-img"><i class="fas fa-vial"></i></div>
+                    <div class="card-body">
+                        <h3>PCR产物测序</h3>
+                        <p>直接对PCR扩增产物进行测序，无需质粒</p>
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> 酶切纯化产物</li>
+                            <li><i class="fas fa-check"></i> 胶回收产物</li>
+                            <li><i class="fas fa-check"></i> PCR纯化产物</li>
+                        </ul>
+                        <a href="./contact.html" class="btn">立即咨询</a>
+                    </div>
+                </div>
+                <div class="seq-card">
+                    <div class="card-img"><i class="fas fa-bacteria"></i></div>
+                    <div class="card-body">
+                        <h3>菌液测序</h3>
+                        <p>针对菌液验证的测序服务，确保构建正确</p>
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> 菌液验证</li>
+                            <li><i class="fas fa-check"></i> 阳性筛选</li>
+                            <li><i class="fas fa-check"></i> 构建确认</li>
+                        </ul>
+                        <a href="./contact.html" class="btn">立即咨询</a>
+                    </div>
+                </div>
+                <div class="seq-card">
+                    <div class="card-img"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="card-body">
+                        <h3>复杂序列测序</h3>
+                        <p>高GC、重复序列等复杂测序情况</p>
+                        <ul class="features">
+                            <li><i class="fas fa-check"></i> 高GC含量测序</li>
+                            <li><i class="fas fa-check"></i> 重复序列</li>
+                            <li><i class="fas fa-check"></i> 发夹结构</li>
+                        </ul>
+                        <a href="./contact.html" class="btn">立即咨询</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section gray" id="process">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">PROCESS</span>
+                <h2>测序流程</h2>
+                <p>简单应手，轻松完成测序</p>
+            </div>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="num"><span>1</span></div>
+                    <h4>样本寄送</h4>
+                    <p>快递至实验室</p>
+                </div>
+                <div class="process-step">
+                    <div class="num"><span>2</span></div>
+                    <h4>样本接收</h4>
+                    <p>质量检测</p>
+                </div>
+                <div class="process-step">
+                    <div class="num"><span>3</span></div>
+                    <h4>测序反应</h4>
+                    <p>毛细管电泳法</p>
+                </div>
+                <div class="process-step">
+                    <div class="num"><span>4</span></div>
+                    <h4>数据分析</h4>
+                    <p>图谱评估</p>
+                </div>
+                <div class="process-step">
+                    <div class="num"><span>5</span></div>
+                    <h4>结果发送</h4>
+                    <p>报告发送</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="price">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">PRICE</span>
+                <h2>价格说明</h2>
+                <p>透明定价，灵活选择</p>
+            </div>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>服务项目</th>
+                        <th>样本要求</th>
+                        <th>交付周期</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>质粒测序（通用引物）</td>
+                        <td>质粒>100ng/μl, 体积>20μl</td>
+                        <td>24小时</td>
+                        <td>免费提供通用引物</td>
+                    </tr>
+                    <tr>
+                        <td>PCR产物测序</td>
+                        <td>产物浓度>10ng/μl, 体积>20μl</td>
+                        <td>24小时</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>菌液测序</td>
+                        <td>新鲜菌液或甘油菌</td>
+                        <td>24-48小时</td>
+                        <td>提供质粒</td>
+                    </tr>
+                    <tr>
+                        <td>菌液测序项目</td>
+                        <td>单克隆挑取验证</td>
+                        <td>48小时</td>
+                        <td>确保构建正确</td>
+                    </tr>
+                    <tr>
+                        <td>特殊引物测序</td>
+                        <td>客户提供引物</td>
+                        <td>24小时</td>
+                        <td>引物质量自备</td>
+                    </tr>
+                    <tr>
+                        <td>加急测序</td>
+                        <td>提前预约</td>
+                        <td>12小时</td>
+                        <td>优先处理</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>开启您的测序之旅</h2>
+            <p>新客户首单体验，批量测序更优惠</p>
+            <a href="./contact.html" class="btn">立即咨询</a>
+        </div>
+    </section>
+
+    <div class="float-contact">
+        <div class="float-item" title="电话咨询" onclick="location.href='tel:13683326312'">
+            <i class="fas fa-phone-alt"></i>
+            <span>13683326312</span>
+        </div>
+        <div class="float-item" title="微信" id="wechatBtn">
+            <i class="fab fa-weixin"></i>
+            <span>微信咨询</span>
+        </div>
+    </div>
+    <div class="wechat-popup" id="wechatPopup">
+        <div class="wechat-popup-content">
+            <span class="wechat-close" id="wechatClose">&times;</span>
+            <img src="../WeChat.png" alt="微信二维码">
+            <p>扫码添加好友</p>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 恩博康（北京）生物科技有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+</body>
+</html>

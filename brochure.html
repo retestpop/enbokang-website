@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>恩博康生物科技 - 宣传彩页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;background:#f0f0f0;padding:30px 0;}
+        .brochure{width:210mm;min-height:297mm;margin:0 auto;box-shadow:0 8px 40px rgba(0,0,0,0.15);overflow:hidden;background:#fff;}
+        /* 正面 */
+        .front{width:210mm;min-height:297mm;background:linear-gradient(160deg,#f8fbf0 0%,#edf7d8 40%,#e4f2c0 70%,#d8ecc0 100%);position:relative;overflow:hidden;padding:15mm 16mm 0;}
+        .front::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23a6c81e' opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='3'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");opacity:1;}
+        .front-logo{display:flex;align-items:center;justify-content:space-between;margin-bottom:7mm;position:relative;z-index:2;}
+        .front-logo-text{text-align:left;}
+        .logo-icon{width:18mm;height:18mm;background:linear-gradient(135deg,#a6c81e,#6a9e0a);border-radius:3mm;display:flex;align-items:center;justify-content:center;border:1px solid rgba(106,158,10,0.2);overflow:hidden;flex-shrink:0;box-shadow:0 2px 8px rgba(166,200,30,0.25);}
+        .logo-icon-text{font-size:16px;font-weight:900;color:#3a5a0a;letter-spacing:1px;}
+        .logo-en{font-size:8px;color:#7a9e20;letter-spacing:2px;text-transform:uppercase;margin-top:1px;font-weight:500;}
+        .logo-line{width:60px;height:3px;background:linear-gradient(90deg,#a6c81e,#6a9e0a);border-radius:2px;margin:4px 0 7px;}
+        .front-title{position:relative;z-index:2;margin-bottom:7mm;}
+        .front-title h1{font-size:40px;font-weight:900;color:#1B263B;line-height:1.1;}
+        .front-title h1 span{color:#5a8a00;font-weight:900;}
+        .front-title .sub{font-size:15px;color:#444;font-weight:400;line-height:1.8;margin-top:5px;}
+        .front-services{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:7mm;position:relative;z-index:2;}
+        .front-card{background:#fff;border:1.5px solid #c8e090;border-radius:3mm;padding:4mm 5mm;box-shadow:0 2px 8px rgba(106,158,10,0.08);}
+        .front-card h4{color:#3a5a0a;font-size:16px;font-weight:900;margin-bottom:2px;}
+        .front-card p{color:#555;font-size:12px;line-height:1.5;font-weight:400;}
+        .front-adv{margin-bottom:7mm;position:relative;z-index:2;}
+        .front-adv-row{display:flex;gap:5px;margin-bottom:4px;}
+        .front-adv-item{display:flex;align-items:center;gap:4px;background:#fff;border:1.5px solid #c8e090;border-radius:20px;padding:5px 13px;font-size:13px;color:#3a5a0a;font-weight:700;}
+        .front-adv-dot{width:6px;height:6px;background:#a6c81e;border-radius:50%;flex-shrink:0;}
+        .front-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;background:#fff;border:1.5px solid #c8e090;border-radius:3mm;padding:5mm 6mm;position:relative;z-index:2;box-shadow:0 2px 8px rgba(106,158,10,0.06);}
+        .front-stat{text-align:center;}
+        .front-stat-num{font-size:20px;font-weight:900;color:#3a5a0a;line-height:1;}
+        .front-stat-num span{font-size:13px;}
+        .front-stat-desc{font-size:9px;color:#888;font-weight:500;margin-top:3px;}
+        /* 活动banner */
+        .front-promo{background:linear-gradient(135deg,#5a8a00,#a6c81e,#c8e090);border-radius:3mm;padding:5mm 6mm;margin-top:7mm;margin-bottom:0;position:relative;z-index:2;box-shadow:0 3px 10px rgba(106,158,10,0.2);}
+        .promo-header{display:flex;align-items:center;gap:4mm;margin-bottom:3mm;}
+        .promo-badge{background:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.6);border-radius:20px;padding:2px 10px;font-size:10px;color:#fff;font-weight:800;letter-spacing:1px;}
+        .promo-header h3{font-size:13px;font-weight:700;color:#fff;}
+        .promo-tiers{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+        .promo-tier{display:flex;align-items:flex-start;gap:3mm;background:rgba(0,0,0,0.12);border-radius:2mm;padding:4mm 5mm;}
+        .promo-tier-left{min-width:22mm;text-align:center;}
+        .promo-tier-num{font-size:13px;font-weight:900;color:#fff;line-height:1.2;}
+        .promo-tier-num span{font-size:9px;font-weight:500;opacity:0.9;}
+        .promo-tier-gift{font-size:10px;color:rgba(255,255,255,0.95);margin-top:2px;line-height:1.4;font-weight:500;}
+        .promo-footer-note{text-align:right;margin-top:3mm;font-size:9px;color:rgba(255,255,255,0.7);font-weight:500;}
+        .front-slogan{position:relative;z-index:2;padding:3mm 0;text-align:center;}
+        .slogan-text{font-size:28px;font-weight:900;color:#3a5a0a;letter-spacing:2px;line-height:1.2;text-shadow:0 2px 6px rgba(106,158,10,0.15);}
+
+        .front-footer{position:absolute;bottom:0;left:0;right:0;background:#3a5a0a;padding:4mm 16mm;display:flex;justify-content:space-between;align-items:center;}
+        .front-contact{display:flex;gap:8mm;}
+        .front-contact-item{display:flex;align-items:center;gap:4px;color:rgba(255,255,255,0.95);font-size:12px;font-weight:600;}
+        .front-contact-item i{color:#a6c81e;font-size:12px;}
+        .front-qr{display:flex;align-items:center;gap:4px;}
+        .front-qr-box{width:11mm;height:11mm;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:2mm;display:flex;align-items:center;justify-content:center;}
+        .front-qr-text{color:rgba(255,255,255,0.6);font-size:9px;font-weight:500;}
+        /* 反面 */
+        .back{width:210mm;min-height:297mm;background:#fff;padding:15mm 15mm 0;position:relative;}
+        .back-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8mm;padding-bottom:5mm;border-bottom:2px solid #a6c81e;}
+        .back-header-left .tag{font-size:10px;letter-spacing:3px;color:#a6c81e;text-transform:uppercase;margin-bottom:3px;font-weight:700;}
+        .back-header-left h2{font-size:22px;font-weight:900;color:#1B263B;}
+        .back-header-left p{font-size:11px;color:#666;margin-top:2px;font-weight:500;}
+        .back-logo-small{display:flex;align-items:center;gap:5px;color:#a6c81e;font-size:13px;font-weight:700;}
+        .back-services{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6mm;}
+        .back-card{border:1.5px solid #e0e8d0;border-radius:3mm;overflow:hidden;}
+        .back-card-head{display:flex;align-items:center;gap:4mm;padding:4mm 5mm 3mm;}
+        .back-icon{width:10mm;height:10mm;border-radius:2.5mm;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .back-icon i{font-size:18px;color:#fff;}
+        .back-icon-green{background:linear-gradient(135deg,#a6c81e,#6a9e0a);}
+        .back-icon-blue{background:linear-gradient(135deg,#0096C7,#48CAE4);}
+        .back-icon-purple{background:linear-gradient(135deg,#5C6BC0,#283593);}
+        .back-icon-orange{background:linear-gradient(135deg,#FFA62B,#E67E22);}
+        .back-card-head h3{font-size:15px;font-weight:900;color:#1B263B;}
+        .back-card-head span{font-size:10px;color:#777;display:block;margin-top:2px;font-weight:500;}
+        .back-card-body{padding:0 5mm 4mm;}
+        .back-tags{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:4px;}
+        .back-tag{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;}
+        .tag-g{background:rgba(166,200,30,0.15);color:#5a8a00;}
+        .tag-b{background:rgba(0,150,199,0.15);color:#0077a8;}
+        .tag-p{background:rgba(92,107,192,0.15);color:#3d4db7;}
+        .tag-o{background:rgba(255,166,43,0.15);color:#c06010;}
+        .back-list{list-style:none;border-top:1px solid #f0f0f0;padding-top:4px;}
+        .back-list li{font-size:11px;color:#333;padding:2.5px 0;display:flex;align-items:center;gap:4px;font-weight:500;}
+        .back-list li i{font-size:9px;}
+        .li-g i{color:#a6c81e;}
+        .li-b i{color:#0096C7;}
+        .li-p i{color:#5C6BC0;}
+        .li-o i{color:#FFA62B;}
+        .bio-section{background:linear-gradient(135deg,#f8faf0,#f4f9e8);border:1.5px solid #c8e090;border-radius:3mm;padding:5mm;margin-bottom:6mm;}
+        .bio-head{display:flex;align-items:center;gap:4mm;margin-bottom:4mm;}
+        .bio-icon{width:9mm;height:9mm;background:linear-gradient(135deg,#a6c81e,#6a9e0a);border-radius:2mm;display:flex;align-items:center;justify-content:center;}
+        .bio-icon i{color:#fff;font-size:15px;}
+        .bio-head h3{font-size:14px;font-weight:800;color:#2a3a0a;}
+        .bio-head p{font-size:10px;color:#666;font-weight:500;}
+        .bio-modules{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
+        .bio-mod{background:#fff;border:1px solid #e8f5b0;border-radius:2mm;padding:3mm 2mm;text-align:center;}
+        .bio-mod i{font-size:15px;color:#a6c81e;margin-bottom:2px;}
+        .bio-mod h4{font-size:10px;font-weight:800;color:#333;}
+        .bio-mod p{font-size:9px;color:#777;font-weight:500;}
+        .why-section{margin-bottom:6mm;}
+        .why-title{font-size:12px;font-weight:800;color:#1B263B;margin-bottom:4mm;padding-bottom:3mm;border-bottom:1.5px solid #e0e0e0;}
+        .why-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;}
+        .why-item{background:#f9f9f9;border-radius:2mm;padding:4mm 4mm 3mm;}
+        .why-item-top{display:flex;align-items:center;gap:3mm;margin-bottom:2px;}
+        .why-num{font-size:20px;font-weight:900;color:#a6c81e;opacity:0.3;line-height:1;}
+        .why-ic{width:8mm;height:8mm;background:rgba(166,200,30,0.12);border-radius:2mm;display:flex;align-items:center;justify-content:center;}
+        .why-ic i{font-size:13px;color:#a6c81e;}
+        .why-item h4{font-size:11px;font-weight:800;color:#1B263B;}
+        .why-item p{font-size:10px;color:#555;line-height:1.5;font-weight:500;}
+        .contact-area{background:#1B263B;border-radius:3mm;padding:6mm 8mm;display:grid;grid-template-columns:1fr 1fr;gap:6mm;margin-bottom:0;}
+        .contact-l h3{font-size:16px;font-weight:800;color:#fff;margin-bottom:3mm;}
+        .contact-l p{font-size:11px;color:rgba(255,255,255,0.65);line-height:1.7;font-weight:400;}
+        .contact-r{display:flex;flex-direction:column;gap:3mm;}
+        .contact-item{display:flex;align-items:center;gap:3mm;color:rgba(255,255,255,0.95);font-size:13px;font-weight:600;}
+        .contact-item i{width:7mm;height:7mm;background:rgba(166,200,30,0.25);border-radius:1.5mm;display:flex;align-items:center;justify-content:center;color:#a6c81e;font-size:12px;}
+        .back-bottom{position:absolute;bottom:0;left:0;right:0;background:#a6c81e;padding:3mm 15mm;display:flex;justify-content:space-between;align-items:center;}
+        .back-bottom-l{display:flex;align-items:center;gap:3mm;color:#fff;font-size:11px;font-weight:700;}
+        .back-bottom-logo{width:7mm;height:7mm;background:rgba(255,255,255,0.2);border-radius:1.5mm;display:flex;align-items:center;justify-content:center;}
+        .back-bottom-logo img{width:20px;height:20px;}
+        .back-bottom-r{color:rgba(255,255,255,0.85);font-size:10px;}
+        @media print{body{background:none;padding:0;}.brochure{box-shadow:none;margin:0;page-break-after:always;}.front{page-break-after:always;}}
+        @page{size:A4;margin:0;}
+    </style>
+</head>
+<body>
+<div class="brochure">
+<!-- 正面 -->
+<div class="front">
+    <div class="front-logo">
+        <div class="front-logo-text">
+            <div class="logo-icon-text">恩博康（北京）生物科技有限公司</div>
+            <div class="logo-en">ENBOKANG BIO TECHNOLOGY</div>
+        </div>
+        <div class="logo-icon">
+            <img src="assets/logo.svg" alt="恩博康" style="width:56px;height:56px;">
+        </div>
+    </div>
+    <div class="logo-line"></div>
+    <div class="front-title">
+        <h1>一代测序<br><span>实验解决方案</span><br>专家</h1>
+        <p class="sub">专注Sanger测序、引物合成、生物信息学分析、试剂耗材一站式服务<br>覆盖高校、科研院所、医院、企业，帮您把实验做通</p>
+    </div>
+    <div class="front-services">
+        <div class="front-card"><h4><i class="fas fa-dna"></i> 一代测序（Sanger）</h4><p>毛细管电泳金标准测序，准确率99.99%，最快24h交付，测序成功率>99%</p></div>
+        <div class="front-card"><h4><i class="fas fa-pencil-ruler"></i> 引物合成</h4><p>常规引物、修饰引物、探针合成，24h内发货，严格QC质控</p></div>
+        <div class="front-card"><h4><i class="fas fa-chart-line"></i> 生物信息学分析</h4><p>个性化小规模生信服务，GWAS、转录组、多组学联合分析，8大模块</p></div>
+        <div class="front-card"><h4><i class="fas fa-flask"></i> 试剂耗材</h4><p>PCR、提取纯化、克隆构建等全流程试剂耗材，一站式采购</p></div>
+    </div>
+    <div class="front-adv">
+        <div class="front-adv-row">
+            <div class="front-adv-item"><div class="front-adv-dot"></div>农业科研深度聚焦</div>
+            <div class="front-adv-item"><div class="front-adv-dot"></div>一对一技术支持</div>
+            <div class="front-adv-item"><div class="front-adv-dot"></div>全程科辅无忧</div>
+        </div>
+        <div class="front-adv-row">
+            <div class="front-adv-item"><div class="front-adv-dot"></div>快速交付可靠</div>
+            <div class="front-adv-item"><div class="front-adv-dot"></div>一站式实验方案</div>
+        </div>
+    </div>
+    <div class="front-stats">
+        <div class="front-stat"><div class="front-stat-num">5000<span>+</span></div><div class="front-stat-desc">累计服务客户</div></div>
+        <div class="front-stat"><div class="front-stat-num">10<span>万</span>+</div><div class="front-stat-desc">测序反应完成</div></div>
+        <div class="front-stat"><div class="front-stat-num">99<span>%</span></div><div class="front-stat-desc">测序成功率</div></div>
+        <div class="front-stat"><div class="front-stat-num">100<span>+</span></div><div class="front-stat-desc">合作科研院所</div></div>
+        <div class="front-stat"><div class="front-stat-num">270<span>+</span></div><div class="front-stat-desc">产品种类</div></div>
+    </div>
+    <!-- 活动信息 -->
+    <div class="front-promo">
+        <div class="promo-header">
+            <div class="promo-badge">优惠活动</div>
+            <h3>新客户首单即送精致雨伞/电动指甲刀/刮刮卡，三选一</h3>
+        </div>
+        <div class="promo-tiers">
+            <div class="promo-tier">
+                <div class="promo-tier-left"><div class="promo-tier-num">样品积分</div></div>
+                <div class="promo-tier-gift">活动可现场兑换积分，一个样品送一个积分（积分一比一）</div>
+            </div>
+            <div class="promo-tier">
+                <div class="promo-tier-left"><div class="promo-tier-num">引物优惠</div></div>
+                <div class="promo-tier-gift">引物满四条即送刮刮卡一张，多订多送</div>
+            </div>
+            <div class="promo-tier">
+                <div class="promo-tier-left"><div class="promo-tier-num">老带新</div></div>
+                <div class="promo-tier-gift">老用户推荐新用户，两人均有礼品可选</div>
+            </div>
+            <div class="promo-tier">
+                <div class="promo-tier-left"><div class="promo-tier-num">长期优惠</div></div>
+                <div class="promo-tier-gift">长期合作客户专属折扣，欢迎咨询</div>
+            </div>
+        </div>
+        <div class="promo-footer-note">活动不断，持续进行</div>
+    </div>
+    <div class="front-slogan">
+        <div class="slogan-text">祝您科研顺利，章口就来！</div>
+    </div>
+    <div class="front-footer">
+        <div class="front-contact">
+            <div class="front-contact-item"><i class="fas fa-phone-alt"></i>13683326312</div>
+            <div class="front-contact-item"><i class="fas fa-envelope"></i>service@enbokang.com</div>
+            <div class="front-contact-item"><i class="fas fa-clock"></i>周一至周日 8:30-21:00</div>
+        </div>
+        <div class="front-qr"><div class="front-qr-text">扫码咨询</div><div class="front-qr-box"><img src="WeChat.png" alt="微信" style="width:46px;height:46px;border-radius:4px;object-fit:cover;"></div></div>
+    </div>
+</div>
+<!-- 反面 -->
+<div class="back" style="padding-bottom:18mm;">
+    <div class="back-header">
+        <div class="back-header-left"><div class="tag">Core Services</div><h2>核心技术服务</h2><p>从基因合成到测序验证，为您提供完整的分子实验解决方案</p></div>
+        <div class="back-logo-small"><i class="fas fa-leaf" style="font-size:18px;"></i> 恩博康生物</div>
+    </div>
+    <div class="back-services">
+        <div class="back-card">
+            <div class="back-card-head"><div class="back-icon back-icon-green"><i class="fas fa-dna"></i></div><div><h3>一代测序（Sanger）</h3><span>毛细管电泳 · 金标准测序</span></div></div>
+            <div class="back-card-body">
+                <div class="back-tags"><span class="back-tag tag-g">质粒测序</span><span class="back-tag tag-g">PCR产物</span><span class="back-tag tag-g">菌液测序</span><span class="back-tag tag-g">克隆测序</span></div>
+                <ul class="back-list"><li class="li-g"><i class="fas fa-check"></i>读长800bp+，准确率99.99%</li><li class="li-g"><i class="fas fa-check"></i>最快24h交付，加急12h</li><li class="li-g"><i class="fas fa-check"></i>测序成功率>99%，免费重测</li><li class="li-g"><i class="fas fa-check"></i>免费提供通用测序引物</li></ul>
+            </div>
+        </div>
+        <div class="back-card">
+            <div class="back-card-head"><div class="back-icon back-icon-blue"><i class="fas fa-pencil-ruler"></i></div><div><h3>引物合成</h3><span>快速合成 · 严格质控</span></div></div>
+            <div class="back-card-body">
+                <div class="back-tags"><span class="back-tag tag-b">常规引物</span><span class="back-tag tag-b">修饰引物</span><span class="back-tag tag-b">探针合成</span><span class="back-tag tag-b">HPLC纯化</span></div>
+                <ul class="back-list"><li class="li-b"><i class="fas fa-check"></i>常规引物24h内发货</li><li class="li-b"><i class="fas fa-check"></i>支持多种修饰和荧光标记</li><li class="li-b"><i class="fas fa-check"></i>严格QC，HPLC/PAGE纯化</li><li class="li-b"><i class="fas fa-check"></i>免费引物设计咨询服务</li></ul>
+            </div>
+        </div>
+        <div class="back-card">
+            <div class="back-card-head"><div class="back-icon back-icon-purple"><i class="fas fa-project-diagram"></i></div><div><h3>克隆与构建</h3><span>专业定制 · 全程跟进</span></div></div>
+            <div class="back-card-body">
+                <div class="back-tags"><span class="back-tag tag-p">基因克隆</span><span class="back-tag tag-p">定点突变</span><span class="back-tag tag-p">载体构建</span><span class="back-tag tag-p">亚克隆</span></div>
+                <ul class="back-list"><li class="li-p"><i class="fas fa-check"></i>表达载体构建，阳性克隆筛选</li><li class="li-p"><i class="fas fa-check"></i>定点突变/缺失/插入</li><li class="li-p"><i class="fas fa-check"></i>全程技术支持保障</li><li class="li-p"><i class="fas fa-check"></i>测序验证确保结果准确</li></ul>
+            </div>
+        </div>
+        <div class="back-card">
+            <div class="back-card-head"><div class="back-icon back-icon-orange"><i class="fas fa-box-open"></i></div><div><h3>试剂耗材</h3><span>一站式采购 · 品牌齐全</span></div></div>
+            <div class="back-card-body">
+                <div class="back-tags"><span class="back-tag tag-o">PCR试剂</span><span class="back-tag tag-o">提取纯化</span><span class="back-tag tag-o">克隆试剂</span><span class="back-tag tag-o">测序耗材</span></div>
+                <ul class="back-list"><li class="li-o"><i class="fas fa-check"></i>Taq酶、高保真酶、预混液</li><li class="li-o"><i class="fas fa-check"></i>基因组DNA、质粒、RNA提取</li><li class="li-o"><i class="fas fa-check"></i>限制性内切酶、感受态细胞</li><li class="li-o"><i class="fas fa-check"></i>PCR管/板、枪头、离心管等</li></ul>
+            </div>
+        </div>
+    </div>
+    <div class="bio-section">
+        <div class="bio-head"><div class="bio-icon"><i class="fas fa-chart-line"></i></div><div><h3>个性化小规模生物信息学分析服务</h3><p>针对科研工作者和小型实验室，少量样本即可分析，8大核心服务模块</p></div></div>
+        <div class="bio-modules">
+            <div class="bio-mod"><i class="fas fa-dna"></i><h4>遗传定位</h4><p>GWAS / QTL</p></div>
+            <div class="bio-mod"><i class="fas fa-chart-bar"></i><h4>转录组</h4><p>RNA-seq / WGCNA</p></div>
+            <div class="bio-mod"><i class="fas fa-project-diagram"></i><h4>非编码RNA</h4><p>miRNA / lncRNA</p></div>
+            <div class="bio-mod"><i class="fas fa-atom"></i><h4>蛋白组</h4><p>PPI / 定量</p></div>
+            <div class="bio-mod"><i class="fas fa-flask"></i><h4>代谢组</h4><p>LC-MS / GC-MS</p></div>
+            <div class="bio-mod"><i class="fas fa-network-wired"></i><h4>多组学联合</h4><p>eQTL / 跨组学</p></div>
+            <div class="bio-mod"><i class="fas fa-microscope"></i><h4>微生物组</h4><p>16S / 宏基因组</p></div>
+            <div class="bio-mod"><i class="fas fa-palette"></i><h4>数据可视化</h4><p>SCI级图表</p></div>
+        </div>
+    </div>
+    <div class="why-section">
+        <div class="why-title">为什么选择恩博康 · We Are Different</div>
+        <div class="why-grid">
+            <div class="why-item"><div class="why-item-top"><div class="why-num">01</div><div class="why-ic"><i class="fas fa-seedling"></i></div><h4>农业科研深度聚焦</h4></div><p>专注农业方向，作物育种、植物分子、植病植保、基因编辑——我们都在行。</p></div>
+            <div class="why-item"><div class="why-item-top"><div class="why-num">02</div><div class="why-ic"><i class="fas fa-tools"></i></div><h4>一对一技术支持</h4></div><p>不是客服，是实验伙伴。引物设计、PCR优化、测序排错、构建验证——一对一配合解决。</p></div>
+            <div class="why-item"><div class="why-item-top"><div class="why-num">03</div><div class="why-ic"><i class="fas fa-hands-helping"></i></div><h4>科辅服务无忧</h4></div><p>从引物设计到最终验证，复杂实验全程科辅，帮您省时间、省精力、提高成功率。</p></div>
+        </div>
+    </div>
+    <div class="contact-area">
+        <div class="contact-l"><h3>开始您的实验合作之旅</h3><p>无论是一个简单的测序需求，引物合成，试剂耗材，还是一个完整的实验方案，我们都愿意配合。专注农业科研领域，覆盖作物育种、植物分子、植病植保、基因编辑等方向。一对一技术顾问全程跟进，帮您把实验做通。新客户首单可享体验价，长期合作更有专属优惠，欢迎咨询。</p></div>
+        <div class="contact-r">
+            <div class="contact-item"><i class="fas fa-phone-alt"></i>13683326312（微信同号）</div>
+            <div class="contact-item"><i class="fas fa-envelope"></i>service@enbokang.com</div>
+            <div class="contact-item"><i class="fas fa-map-marker-alt"></i>北京市海淀区</div>
+            <div class="contact-item"><i class="fas fa-clock"></i>周一至周日 8:30-21:00</div>
+        </div>
+    </div>
+    <div class="back-bottom">
+        <div class="back-bottom-l"><div class="back-bottom-logo"><img src="assets/logo.svg" alt="恩博康" style="width:20px;height:20px;"></div>恩博康（北京）生物科技有限公司</div>
+        <div class="back-bottom-r">© 2026 ENBOKANG BIO All Rights Reserved</div>
+    </div>
+</div>
+</div>
+</body>
+</html>

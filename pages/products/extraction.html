@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>核酸提取/纯化 - 恩博康生物</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #a6c81e; }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: #333; background: #f5f5f5; }
+        .top-bar { background: #1B263B; color: #fff; padding: 10px 0; font-size: 13px; }
+        .top-bar .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; }
+        .top-bar-left span { margin-right: 24px; }
+        .top-bar-left i { margin-right: 6px; }
+        .top-bar-right a { color: rgba(255,255,255,0.7); text-decoration: none; margin-left: 16px; }
+        .top-bar-right a:hover { color: #fff; }
+        .main-header { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 100; }
+        .header-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 70px; }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo img { width: 42px; height: 42px; margin-right: 10px; }
+        .logo-text { display: flex; flex-direction: column; }
+        .logo-cn { font-size: 18px; font-weight: 700; color: #333; }
+        .logo-en { font-size: 11px; color: #999; letter-spacing: 1px; }
+        .main-nav ul { display: flex; list-style: none; margin: 0; padding: 0; gap: 8px; }
+        .main-nav a { text-decoration: none; color: #555; padding: 8px 16px; border-radius: 4px; transition: all 0.3s; font-size: 15px; }
+        .main-nav a:hover, .main-nav a.active { background: #a6c81e; color: #fff; }
+        .page-header { background: linear-gradient(135deg, #a6c81e 0%, #7a9a0e 100%); padding: 48px 0; color: #fff; }
+        .page-header .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        .page-header h1 { font-size: 32px; margin: 0 0 8px; }
+        .breadcrumb { font-size: 14px; opacity: 0.85; }
+        .breadcrumb a { color: #fff; text-decoration: none; }
+        .page-wrapper { max-width: 1280px; margin: 0 auto; padding: 40px 24px; display: flex; gap: 32px; }
+        .sidebar { width: 240px; flex-shrink: 0; }
+        .sidebar-box { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 24px; }
+        .sidebar-title { background: #a6c81e; color: #fff; padding: 14px 20px; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+        .sidebar-title i { font-size: 18px; }
+        .sidebar-section { padding: 12px 0; }
+        .sidebar-section h4 { font-size: 12px; color: #a6c81e; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 0 20px; margin: 8px 0 4px; }
+        .sidebar-section a { display: block; padding: 8px 20px; color: #555; font-size: 13px; text-decoration: none; transition: all 0.2s; border-left: 3px solid transparent; }
+        .sidebar-section a:hover, .sidebar-section a.active { background: #f8fbf0; color: #a6c81e; border-left-color: #a6c81e; font-weight: 600; }
+        .content { flex: 1; min-width: 0; }
+        .content-box { background: #fff; border-radius: 12px; padding: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 24px; }
+        .content-box h2 { font-size: 18px; color: #333; margin: 0 0 20px; padding-bottom: 12px; border-bottom: 2px solid #a6c81e; display: flex; align-items: center; gap: 10px; }
+        .content-box h2 i { color: #a6c81e; font-size: 20px; }
+        .product-row { display: flex; padding: 14px 0; border-bottom: 1px solid #f0f0f0; align-items: center; }
+        .product-row:last-child { border-bottom: none; }
+        .product-row:hover { background: #f8fbf0; margin: 0 -16px; padding: 14px 16px; border-radius: 8px; }
+        .product-name { flex: 1; color: #333; font-size: 14px; font-weight: 500; }
+        .product-btn { padding: 6px 16px; background: #a6c81e; color: #fff; border-radius: 16px; font-size: 13px; text-decoration: none; white-space: nowrap; transition: all 0.3s; cursor: pointer; border: none; }
+        .product-btn:hover { background: #7a9a0e; }
+        .sub-title { font-size: 15px; color: #555; font-weight: 600; margin: 24px 0 12px; padding-left: 12px; border-left: 3px solid #a6c81e; }
+        .wechat-popup { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 9999; align-items: center; justify-content: center; }
+        .wechat-popup-content { background: #fff; border-radius: 16px; padding: 32px; text-align: center; position: relative; max-width: 320px; }
+        .wechat-close { position: absolute; top: 12px; right: 16px; font-size: 28px; cursor: pointer; color: #999; line-height: 1; }
+        .wechat-popup-content img { width: 220px; height: 220px; border-radius: 8px; margin-bottom: 16px; }
+        .wechat-popup-content p { font-size: 16px; color: #666; margin: 0; }
+        .float-contact { position: fixed; right: 20px; bottom: 80px; z-index: 900; display: flex; flex-direction: column; gap: 12px; }
+        .float-item { width: 50px; height: 50px; background: #a6c81e; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.3s; }
+        .float-item:hover { background: #7a9a0e; transform: scale(1.1); }
+        .main-footer { background: #1B263B; color: rgba(255,255,255,0.7); padding: 48px 0 24px; }
+        .main-footer .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        .footer-bottom { text-align: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; }
+        @media (max-width: 768px) {
+            .page-wrapper { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-nav { display: none; }
+            .product-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .product-desc { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <span><i class="fas fa-phone-alt"></i> 13683326312</span>
+                <span><i class="fas fa-envelope"></i> service@enbokang.com</span>
+                <span><i class="fas fa-clock"></i> 周一至周日 8:30-21:00</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#"><i class="fas fa-user"></i> 登录</a>
+                <a href="#">注册</a>
+            </div>
+        </div>
+    </div>
+    <header class="main-header">
+        <div class="header-inner">
+            <a href="../../index.html" class="logo">
+                <img src="../../assets/logo.svg" alt="恩博康生物">
+                <div class="logo-text">
+                    <span class="logo-cn">恩博康生物</span>
+                    <span class="logo-en">ENBOKANG BIO</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../../index.html">首页</a></li>
+                    <li><a href="../sanger.html">Sanger测序</a></li>
+                    <li><a href="../primer.html">引物合成</a></li>
+                    <li><a href="pcr.html" class="active">产品中心</a></li>
+                    <li><a href="../contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="page-header">
+        <div class="container">
+            <h1>核酸提取/纯化</h1>
+            <div class="breadcrumb">
+                <a href="../../index.html">首页</a> &gt; 
+                <a href="pcr.html">产品中心</a> &gt; 
+                分子生物 &gt; 
+                核酸提取/纯化
+            </div>
+        </div>
+    </div>
+    
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-box">
+                <div class="sidebar-title"><i class="fas fa-th-large"></i> 产品分类</div>
+                <div class="sidebar-section">
+                    <h4>分子生物</h4>
+                    <a href="pcr.html">PCR系列</a>
+                    <a href="qpcr.html">qPCR</a>
+                    <a href="electrophoresis.html">核酸电泳</a>
+                    <a href="extraction.html" class="active">核酸提取/纯化</a>
+                    <a href="sample-storage.html">样本采集储存</a>
+                    <a href="cloning.html">分子克隆</a>
+                    <a href="rt.html">反转录</a>
+                </div>
+                <div class="sidebar-section">
+                    <h4>蛋白纯化&分析</h4>
+                    <a href="protein-gel.html">蛋白预制胶</a>
+                    <a href="western-blot.html">Western blot</a>
+                    <a href="protein-electrophoresis.html">蛋白电泳</a>
+                    <a href="protein-resin.html">蛋白纯化填料</a>
+                </div>
+                <div class="sidebar-section">
+                    <h4>细胞培养</h4>
+                    <a href="cell-proliferation.html">细胞增殖</a>
+                    <a href="serum.html">胎牛血清</a>
+                    <a href="transfection.html">转染试剂</a>
+                    <a href="cell-related.html">细胞培养相关</a>
+                </div>
+                <div class="sidebar-section">
+                    <h4>仪器耗材</h4>
+                    <a href="qpcr-consumables.html">qPCR配套耗材</a>
+                    <a href="pcr-consumables.html">普通PCR配套耗材</a>
+                    <a href="general-consumables.html">通用配套耗材</a>
+                    <a href="centrifuge.html">高速离心机</a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div class="content-box">
+                <h2><i class="fas fa-cut"></i> 核酸提取/纯化</h2>
+                <div class="product-row">
+                    <span class="product-name">琼脂糖凝胶回收试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">高纯度质粒小量提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">高纯度质粒中量提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">内毒素去除质粒小量提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">内毒素去除质粒大量提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">超纯质粒大量提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">血液/组织/细胞基因组DNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">全血/组织/细胞/细菌通用型DNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">血液/组织/细胞基因组DNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">全血/组织/细胞/血液肿瘤通用型DNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">细胞基因组DNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">植物基因组DNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">植物基因组DNA快速提取试剂盒II</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">病毒DNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">土壤基因组DNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">TRIpure（总RNA提取试剂）</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">全血（液体样本）总RNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">DiSpin 总RNA提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">DiSpin 植物RNA快速提取试剂盒I</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">DiSpin 植物Micro RNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">DiSpin植物/血清RNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">细胞RNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">DiSpin 通用植物RNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">DiSpin 组织/细胞RNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">植物RNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">离心柱多糖多脂植物DNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+                <div class="product-row">
+                    <span class="product-name">病毒基因DNA/RNA快速提取试剂盒</span>
+                    <span class="product-btn" onclick="showWechatPopup()">咨询报价</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="wechat-popup" id="wechatPopup">
+        <div class="wechat-popup-content">
+            <span class="wechat-close" id="wechatClose">&times;</span>
+            <img src="../WeChat.png" alt="微信二维码">
+            <p>扫码添加好友获取报价</p>
+        </div>
+    </div>
+    <div class="float-contact">
+        <div class="float-item" title="电话咨询" onclick="location.href='tel:13683326312'"><i class="fas fa-phone-alt"></i></div>
+        <div class="float-item" title="微信咨询" onclick="showWechatPopup()"><i class="fab fa-weixin"></i></div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 恩博康（北京）生物科技有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        function showWechatPopup() { document.getElementById('wechatPopup').style.display='flex'; }
+        document.getElementById('wechatClose').onclick=function(){document.getElementById('wechatPopup').style.display='none';};
+        document.getElementById('wechatPopup').addEventListener('click', function(e){ if(e.target===this) this.style.display='none'; });
+    </script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>引物合成服务 - 恩博康生物</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header { background: linear-gradient(135deg, #0096C7 0%, #48CAE4 100%); padding: 80px 0; color: #fff; }
+        .page-header h1 { font-size: 40px; margin: 0 0 16px; font-weight: 700; }
+        .page-header p { font-size: 18px; margin: 0; opacity: 0.9; line-height: 1.7; max-width: 700px; }
+        .page-nav { background: #fff; border-bottom: 1px solid #eee; padding: 16px 0; }
+        .page-nav .container { display: flex; gap: 24px; flex-wrap: wrap; }
+        .page-nav a { color: #666; font-size: 14px; padding: 8px 16px; border-radius: 20px; transition: all 0.3s; }
+        .page-nav a:hover, .page-nav a.active { background: #0096C7; color: #fff; }
+        .section { padding: 60px 0; }
+        .section.gray { background: #f8f9fa; }
+        .section-header { text-align: center; margin-bottom: 48px; }
+        .section-header .tag { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 3px; color: #0096C7; text-transform: uppercase; margin-bottom: 8px; }
+        .section-header h2 { font-size: 32px; color: #333; margin: 0 0 12px; }
+        .section-header p { font-size: 16px; color: #666; margin: 0; }
+        .type-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 32px; }
+        .type-card { background: #fff; border-radius: 12px; padding: 28px; border: 1px solid #eee; transition: all 0.3s; }
+        .type-card:hover { border-color: #0096C7; box-shadow: 0 8px 24px rgba(0,150,199,0.1); }
+        .type-card h3 { font-size: 20px; color: #333; margin: 0 0 12px; display: flex; align-items: center; gap: 10px; }
+        .type-card h3 i { color: #0096C7; font-size: 24px; }
+        .type-card p { font-size: 14px; color: #666; line-height: 1.7; margin: 0 0 16px; }
+        .type-card ul { list-style: none; padding: 0; margin: 0; }
+        .type-card ul li { padding: 8px 0; font-size: 14px; color: #555; display: flex; align-items: center; gap: 8px; }
+        .type-card ul li i { color: #0096C7; font-size: 14px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 32px; }
+        .feature-item { background: #fff; text-align: center; padding: 32px 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+        .feature-item i { font-size: 48px; color: #0096C7; margin-bottom: 16px; }
+        .feature-item h4 { font-size: 18px; color: #333; margin: 0 0 8px; }
+        .feature-item p { font-size: 14px; color: #888; margin: 0; }
+        .spec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 32px; }
+        .spec-box { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+        .spec-box h4 { font-size: 18px; color: #333; margin: 0 0 16px; padding-bottom: 12px; border-bottom: 2px solid #0096C7; display: inline-block; }
+        .spec-box ul { list-style: none; padding: 0; margin: 0; }
+        .spec-box ul li { padding: 10px 0; font-size: 14px; color: #555; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; }
+        .spec-box ul li:last-child { border-bottom: none; }
+        .spec-box ul li span { color: #888; }
+        .process-flow { display: flex; justify-content: space-between; margin-top: 48px; position: relative; }
+        .process-flow::before { content: ''; position: absolute; top: 40px; left: 15%; right: 15%; height: 3px; background: linear-gradient(90deg, #0096C7, #48CAE4); z-index: 0; }
+        .process-step { text-align: center; position: relative; z-index: 1; flex: 1; }
+        .process-step .num { width: 80px; height: 80px; background: linear-gradient(135deg, #0096C7, #48CAE4); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; box-shadow: 0 4px 12px rgba(0,150,199,0.3); }
+        .process-step .num span { font-size: 28px; font-weight: 700; color: #fff; }
+        .process-step h4 { font-size: 16px; color: #333; margin: 0 0 4px; }
+        .process-step p { font-size: 13px; color: #888; margin: 0; }
+        .price-table { width: 100%; border-collapse: collapse; margin-top: 24px; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+        .price-table th { background: #0096C7; color: #fff; padding: 16px; text-align: left; font-size: 15px; }
+        .price-table td { padding: 14px 16px; border-bottom: 1px solid #eee; font-size: 14px; color: #555; }
+        .price-table tr:last-child td { border-bottom: none; }
+        .price-table tr:hover { background: #f8f9fa; }
+        .cta-section { background: linear-gradient(135deg, #0096C7, #48CAE4); padding: 80px 0; text-align: center; }
+        .cta-section h2 { color: #fff; font-size: 32px; margin: 0 0 16px; }
+        .cta-section p { color: rgba(255,255,255,0.9); font-size: 16px; margin: 0 0 24px; }
+        .cta-section .btn { display: inline-block; background: #fff; color: #0096C7; padding: 16px 48px; border-radius: 30px; font-size: 18px; font-weight: 600; text-decoration: none; }
+        .cta-section .btn:hover { transform: scale(1.05); }
+        @media (max-width: 768px) {
+            .type-grid { grid-template-columns: 1fr; }
+            .feature-grid { grid-template-columns: repeat(2, 1fr); }
+            .spec-grid { grid-template-columns: 1fr; }
+            .process-flow { flex-direction: column; gap: 32px; }
+            .process-flow::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <span><i class="fas fa-phone-alt"></i> 13683326312</span>
+                <span><i class="fas fa-envelope"></i> service@enbokang.com</span>
+                <span><i class="fas fa-clock"></i> 周一至周日 8:30-21:00</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#"><i class="fas fa-user"></i> 登录</a>
+                <a href="#">注册</a>
+            </div>
+        </div>
+    </div>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <a href="../index.html">
+                        <div class="logo-icon"><img src="../assets/logo.svg" alt="恩博康生物" width="42" height="42"></div>
+                        <div class="logo-text"><span class="logo-cn">恩博康生物</span><span class="logo-en">ENBOKANG BIO</span></div>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="../index.html">首页</a></li>
+                        <li><a href="sanger.html">Sanger测序</a></li>
+                        <li class="active"><a href="primer.html">引物合成</a></li>
+                        <li><a href="products/pcr.html">产品中心</a></li>
+                        <li><a href="./contact.html">联系我们</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <a href="#" class="btn-order">在线下单</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>引物合成服务</h1>
+            <p>高品质DNA引物合成，快速交单</p>
+        </div>
+    </div>
+
+    <div class="page-nav">
+        <div class="container">
+            <a href="#types">引物类型</a>
+            <a href="#purify">纯化方式</a>
+            <a href="#feature">服务优势</a>
+            <a href="#price">价格说明</a>
+        </div>
+    </div>
+
+    <section class="section gray" id="types">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">TYPES</span>
+                <h2>引物类型</h2>
+                <p>多种引物类型，满足不同实验需求</p>
+            </div>
+            <div class="type-grid">
+                <div class="type-card">
+                    <h3><i class="fas fa-dna"></i> 普通引物</h3>
+                    <p>适用于常规PCR扩增、基因克隆、测序等常规分子实验</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> 长度范围：15-100 bp</li>
+                        <li><i class="fas fa-check"></i> 多种纯化方式可选</li>
+                        <li><i class="fas fa-check"></i> 24小时内发货</li>
+                        <li><i class="fas fa-check"></i> 常规PCR首选</li>
+                    </ul>
+                </div>
+                <div class="type-card">
+                    <h3><i class="fas fa-broadcast-tower"></i> 荧光探针</h3>
+                    <p>用于实时荧光定量PCR（qPCR）检测，需要配备相应的探针使用</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> TaqMan探针</li>
+                        <li><i class="fas fa-check"></i> MGB探针</li>
+                        <li><i class="fas fa-check"></i> 多种荧光染料可选</li>
+                        <li><i class="fas fa-check"></i> 适用于基因检测、疾病检测等</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="purify">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">PURIFICATION</span>
+                <h2>纯化方式</h2>
+                <p>根据实验需求选择合适的纯化方式</p>
+            </div>
+            <div class="type-grid">
+                <div class="type-card">
+                    <h3><i class="fas fa-filter"></i> DSL（脱盐）</h3>
+                    <p>适用于短引物，成本较低</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> 适用于≤30bp 引物</li>
+                        <li><i class="fas fa-check"></i> 快速交单</li>
+                        <li><i class="fas fa-check"></i> 成本优惠</li>
+                    </ul>
+                </div>
+                <div class="type-card">
+                    <h3><i class="fas fa-vials"></i> PAGE（聚丙烯酰胺凝胶纯化）</h3>
+                    <p>高纯度引物，适用于对纯度要求高的实验</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> 纯度 >95%</li>
+                        <li><i class="fas fa-check"></i> 适用于40-100bp 引物</li>
+                        <li><i class="fas fa-check"></i> 常规PCR首选</li>
+                    </ul>
+                </div>
+                <div class="type-card">
+                    <h3><i class="fas fa-chart-line"></i> HPLC（高效液相色谱纯化）</h3>
+                    <p>高纯度要求实验的首选</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> 纯度 >98%</li>
+                        <li><i class="fas fa-check"></i> 适用于探针及长引物</li>
+                        <li><i class="fas fa-check"></i> 质量稳定</li>
+                    </ul>
+                </div>
+                <div class="type-card">
+                    <h3><i class="fas fa-columns"></i> RP-HPLC（反相HPLC纯化）</h3>
+                    <p>最高纯度要求的专业应用</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> 纯度 >99%</li>
+                        <li><i class="fas fa-check"></i> 适用于高灵敏度实验</li>
+                        <li><i class="fas fa-check"></i> 精准定制</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section gray" id="feature">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">ADVANTAGES</span>
+                <h2>服务优势</h2>
+                <p>为什么选择恩博康引物合成服务</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="fas fa-microchip"></i>
+                    <h4>自动化生产</h4>
+                    <p>采用进口合成仪，全自动化生产</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-vial"></i>
+                    <h4>严格质控</h4>
+                    <p>每批引物均经过严格质量检测</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-clock"></i>
+                    <h4>快速交单</h4>
+                    <p>常规引物24小时内发货</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-headset"></i>
+                    <h4>技术支持</h4>
+                    <p>免费提供引物设计咨询服务</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="price">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">PRICE</span>
+                <h2>价格说明</h2>
+                <p>透明定价，灵活选择</p>
+            </div>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>服务类型</th>
+                        <th>长度范围</th>
+                        <th>纯化方式</th>
+                        <th>交付周期</th>
+                        <th>价格</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>普通引物</td>
+                        <td>15-40 bp</td>
+                        <td>DSL</td>
+                        <td>24小时</td>
+                        <td>30元/条</td>
+                    </tr>
+                    <tr>
+                        <td>普通引物</td>
+                        <td>41-60 bp</td>
+                        <td>PAGE</td>
+                        <td>24-48小时</td>
+                        <td>50元/条</td>
+                    </tr>
+                    <tr>
+                        <td>普通引物</td>
+                        <td>61-100 bp</td>
+                        <td>HPLC</td>
+                        <td>48-72小时</td>
+                        <td>80元/条</td>
+                    </tr>
+                    <tr>
+                        <td>荧光探针</td>
+                        <td>20-40 bp</td>
+                        <td>HPLC</td>
+                        <td>48-72小时</td>
+                        <td>120元/条</td>
+                    </tr>
+                    <tr>
+                        <td>长链引物</td>
+                        <td>100-200 bp</td>
+                        <td>RP-HPLC</td>
+                        <td>72-96小时</td>
+                        <td>150元/条起</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>需要引物合成服务？</h2>
+            <p>联系我们提交订单，专业团队为您提供服务</p>
+            <a href="./contact.html" class="btn">立即咨询</a>
+        </div>
+    </section>
+
+    <div class="float-contact">
+        <div class="float-item" title="电话咨询" onclick="location.href='tel:13683326312'">
+            <i class="fas fa-phone-alt"></i>
+            <span>13683326312</span>
+        </div>
+        <div class="float-item" title="微信" id="wechatBtn">
+            <i class="fab fa-weixin"></i>
+            <span>微信咨询</span>
+        </div>
+    </div>
+    <div class="wechat-popup" id="wechatPopup">
+        <div class="wechat-popup-content">
+            <span class="wechat-close" id="wechatClose">&times;</span>
+            <img src="../WeChat.png" alt="微信二维码">
+            <p>扫码添加好友</p>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 恩博康（北京）生物科技有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+</body>
+</html>

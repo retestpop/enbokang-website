@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0096C7"/>
+      <stop offset="100%" style="stop-color:#48CAE4"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" rx="20" fill="url(#bg2)"/>
+  <!-- DNA chain -->
+  <rect x="100" y="90" width="8" height="20" rx="4" fill="white" opacity="0.8"/>
+  <rect x="120" y="110" width="8" height="20" rx="4" fill="rgba(255,255,255,0.6)"/>
+  <rect x="140" y="90" width="8" height="20" rx="4" fill="white" opacity="0.8"/>
+  <rect x="160" y="110" width="8" height="20" rx="4" fill="rgba(255,255,255,0.6)"/>
+  <rect x="180" y="90" width="8" height="20" rx="4" fill="white" opacity="0.8"/>
+  <rect x="200" y="110" width="8" height="20" rx="4" fill="rgba(255,255,255,0.6)"/>
+  <rect x="220" y="90" width="8" height="20" rx="4" fill="white" opacity="0.8"/>
+  <rect x="240" y="110" width="8" height="20" rx="4" fill="rgba(255,255,255,0.6)"/>
+  <rect x="260" y="90" width="8" height="20" rx="4" fill="white" opacity="0.8"/>
+  <rect x="280" y="110" width="8" height="20" rx="4" fill="rgba(255,255,255,0.6)"/>
+  <!-- Backbone -->
+  <rect x="98" y="125" width="194" height="6" rx="3" fill="rgba(255,255,255,0.4)"/>
+  <!-- Nucleotide circles -->
+  <circle cx="108" cy="100" r="12" fill="rgba(255,255,255,0.3)"/>
+  <circle cx="148" cy="100" r="12" fill="rgba(255,255,255,0.3)"/>
+  <circle cx="188" cy="100" r="12" fill="rgba(255,255,255,0.3)"/>
+  <circle cx="228" cy="100" r="12" fill="rgba(255,255,255,0.3)"/>
+  <circle cx="268" cy="100" r="12" fill="rgba(255,255,255,0.3)"/>
+  <!-- Ruler marks -->
+  <line x1="100" y1="155" x2="100" y2="170" stroke="white" stroke-width="2" opacity="0.6"/>
+  <line x1="200" y1="155" x2="200" y2="170" stroke="white" stroke-width="2" opacity="0.6"/>
+  <line x1="300" y1="155" x2="300" y2="170" stroke="white" stroke-width="2" opacity="0.6"/>
+  <line x1="100" y1="162" x2="300" y2="162" stroke="white" stroke-width="1" opacity="0.4"/>
+  <!-- Labels -->
+  <text x="200" y="210" text-anchor="middle" fill="white" font-size="24" font-weight="bold">PRIMER</text>
+  <text x="200" y="235" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="12" letter-spacing="3">引物合成</text>
+  <!-- Scale marks labels -->
+  <text x="100" y="182" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10">0</text>
+  <text x="200" y="182" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10">500bp</text>
+  <text x="300" y="182" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10">1000bp</text>
+</svg>

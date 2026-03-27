@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>内容链接 - 个性化生信分析服务菜单</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .container{max-width: 1100px;margin:0 auto;padding:0 20px}
+    .title{text-align:center;margin:40px 0 20px;font-size:28px;font-weight:700}
+    .subtitle{text-align:center;color:#666;margin-bottom:20px}
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+    .service-card{border:1px solid #eee;border-radius:12px;padding:20px;background:#fff;min-height:140px;box-shadow:0 2px 6px rgba(0,0,0,0.04)}
+    .service-card h3{font-size:18px;margin:0 0 8px}
+    .service-card p{font-size:14px; color:#555; margin:0}
+    .btn-secondary{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:8px 14px;background:#a6c81e;border-radius:8px;color:#fff;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">个性化生信分析服务菜单</h1>
+    <p class="subtitle">8大核心服务模块，覆盖基因组、转录组、蛋白组、代谢组等多组学分析</p>
+    <section class="services-grid" aria-label="生信分析服务菜单">
+      <article class="service-card">
+        <h3>遗传定位与候选基因筛选</h3>
+        <p>基于GWAS、QTL-seq等方法的遗传定位分析，精确定位重要性状区间。</p>
+        <a href="bioinfo/genetic-mapping.html" class="btn-secondary">了解详情</a>
+      </article>
+      <article class="service-card">
+        <h3>转录组与表达分析</h3>
+        <p>差异表达分析、富集分析、WGCNA共表达网络构建。</p>
+        <a href="bioinfo/transcriptome.html" class="btn-secondary">了解详情</a>
+      </article>
+      <article class="service-card">
+        <h3>非编码RNA与调控分析</h3>
+        <p>miRNA、lncRNA、circRNA鉴定与ceRNA网络构建。</p>
+        <a href="bioinfo/noncoding-rna.html" class="btn-secondary">了解详情</a>
+      </article>
+      <article class="service-card">
+        <h3>蛋白组结果解读</h3>
+        <p>蛋白鉴定、定量分析、PPI网络构建与功能注释。</p>
+        <a href="bioinfo/proteome.html" class="btn-secondary">了解详情</a>
+      </article>
+      <article class="service-card">
+        <h3>代谢组与品质分析</h3>
+        <p>代谢物鉴定、定量分析与品质性状关联研究。</p>
+        <a href="bioinfo/metabolome.html" class="btn-secondary">了解详情</a>
+      </article>
+      <article class="service-card">
+        <h3>多组学联合分析</h3>
+        <p>基因组-转录组-蛋白组-代谢组跨层级联合分析。</p>
+        <a href="bioinfo/multiomics.html" class="btn-secondary">了解详情</a>
+      </article>
+      <article class="service-card">
+        <h3>微生物与互作分析</h3>
+        <p>16S/ITS扩增子分析、宏基因组与宿主互作网络。</p>
+        <a href="bioinfo/microbe.html" class="btn-secondary">了解详情</a>
+      </article>
+      <article class="service-card">
+        <h3>数据整理、画图与结果补充</h3>
+        <p>数据清洗、SCI级别图表制作、个性化分析补充。</p>
+        <a href="bioinfo/data-visualization.html" class="btn-secondary">了解详情</a>
+      </article>
+    </section>
+    <p style="text-align:center;margin:40px 0 60px; color:#666">返回 <a href="index.html" style="color:#a6c81e;">首页</a></p>
+  </div>
+</body>
+</html>

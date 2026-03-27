@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+     viewBox="0 0 794 1123" width="794" height="1123">
+  <defs>
+    <linearGradient id="bioGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8faf0"/>
+      <stop offset="100%" stop-color="#f4f9e8"/>
+    </linearGradient>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&amp;display=swap');
+      text { font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+    </style>
+  </defs>
+
+  <!-- ===== 反面 ===== -->
+  <rect width="794" height="1123" fill="white"/>
+
+  <!-- 头部 -->
+  <rect x="0" y="0" width="794" height="3" fill="#a6c81e"/>
+  <text x="55" y="28" fill="#a6c81e" font-size="9" letter-spacing="3">CORE SERVICES</text>
+  <text x="55" y="52" fill="#1B263B" font-size="22" font-weight="900">核心技术服务</text>
+  <text x="55" y="70" fill="#999" font-size="10">从基因合成到测序验证，为您提供完整的分子实验解决方案</text>
+  <text x="650" y="50" fill="#a6c81e" font-size="12" font-weight="700">🍃 恩博康生物</text>
+
+  <!-- 服务卡片 - Row 1 -->
+  <!-- Card 1: Sanger -->
+  <rect x="55" y="85" width="330" height="120" rx="10" fill="white" stroke="#eee" stroke-width="1"/>
+  <circle cx="85" cy="112" r="16" fill="#a6c81e"/>
+  <text x="85" y="117" text-anchor="middle" fill="white" font-size="11" font-weight="900">S</text>
+  <text x="108" y="107" fill="#1B263B" font-size="13" font-weight="700">一代测序（Sanger）</text>
+  <text x="108" y="122" fill="#aaa" font-size="9">毛细管电泳 · 金标准测序</text>
+  <rect x="65" y="132" width="52" height="16" rx="8" fill="rgba(166,200,30,0.12)"/>
+  <text x="91" y="143" text-anchor="middle" fill="#6a9e0a" font-size="8">质粒测序</text>
+  <rect x="122" y="132" width="58" height="16" rx="8" fill="rgba(166,200,30,0.12)"/>
+  <text x="151" y="143" text-anchor="middle" fill="#6a9e0a" font-size="8">PCR产物</text>
+  <rect x="185" y="132" width="52" height="16" rx="8" fill="rgba(166,200,30,0.12)"/>
+  <text x="211" y="143" text-anchor="middle" fill="#6a9e0a" font-size="8">菌液测序</text>
+  <rect x="242" y="132" width="52" height="16" rx="8" fill="rgba(166,200,30,0.12)"/>
+  <text x="268" y="143" text-anchor="middle" fill="#6a9e0a" font-size="8">克隆测序</text>
+  <line x1="65" y1="155" x2="375" y2="155" stroke="#f5f5f5" stroke-width="1"/>
+  <text x="75" y="167" fill="#666" font-size="9">✓ 读长800bp+，准确率99.99%</text>
+  <text x="75" y="180" fill="#666" font-size="9">✓ 最快24h交付，加急12h</text>
+  <text x="75" y="193" fill="#666" font-size="9">✓ 测序成功率>99%，免费重测</text>
+  <text x="75" y="206" fill="#666" font-size="9">✓ 免费提供通用测序引物</text>
+
+  <!-- Card 2: Primer -->
+  <rect x="400" y="85" width="330" height="120" rx="10" fill="white" stroke="#eee" stroke-width="1"/>
+  <circle cx="430" cy="112" r="16" fill="#0096C7"/>
+  <text x="430" y="117" text-anchor="middle" fill="white" font-size="11" font-weight="900">P</text>
+  <text x="453" y="107" fill="#1B263B" font-size="13" font-weight="700">引物合成</text>
+  <text x="453" y="122" fill="#aaa" font-size="9">快速合成 · 严格质控</text>
+  <rect x="410" y="132" width="52" height="16" rx="8" fill="rgba(0,150,199,0.12)"/>
+  <text x="436" y="143" text-anchor="middle" fill="#0096C7" font-size="8">常规引物</text>
+  <rect x="467" y="132" width="52" height="16" rx="8" fill="rgba(0,150,199,0.12)"/>
+  <text x="493" y="143" text-anchor="middle" fill="#0096C7" font-size="8">修饰引物</text>
+  <rect x="524" y="132" width="52" height="16" rx="8" fill="rgba(0,150,199,0.12)"/>
+  <text x="550" y="143" text-anchor="middle" fill="#0096C7" font-size="8">探针合成</text>
+  <rect x="581" y="132" width="55" height="16" rx="8" fill="rgba(0,150,199,0.12)"/>
+  <text x="608" y="143" text-anchor="middle" fill="#0096C7" font-size="8">HPLC纯化</text>
+  <line x1="410" y1="155" x2="720" y2="155" stroke="#f5f5f5" stroke-width="1"/>
+  <text x="420" y="167" fill="#666" font-size="9">✓ 常规引物24h内发货</text>
+  <text x="420" y="180" fill="#666" font-size="9">✓ 支持多种修饰和荧光标记</text>
+  <text x="420" y="193" fill="#666" font-size="9">✓ 严格QC，HPLC/PAGE纯化</text>
+  <text x="420" y="206" fill="#666" font-size="9">✓ 免费引物设计咨询服务</text>
+
+  <!-- Card 3: Clone -->
+  <rect x="55" y="215" width="330" height="120" rx="10" fill="white" stroke="#eee" stroke-width="1"/>
+  <circle cx="85" cy="242" r="16" fill="#5C6BC0"/>
+  <text x="85" y="247" text-anchor="middle" fill="white" font-size="11" font-weight="900">C</text>
+  <text x="108" y="237" fill="#1B263B" font-size="13" font-weight="700">克隆与构建</text>
+  <text x="108" y="252" fill="#aaa" font-size="9">专业定制 · 全程跟进</text>
+  <rect x="65" y="262" width="52" height="16" rx="8" fill="rgba(92,107,192,0.12)"/>
+  <text x="91" y="273" text-anchor="middle" fill="#5C6BC0" font-size="8">基因克隆</text>
+  <rect x="122" y="262" width="52" height="16" rx="8" fill="rgba(92,107,192,0.12)"/>
+  <text x="148" y="273" text-anchor="middle" fill="#5C6BC0" font-size="8">定点突变</text>
+  <rect x="179" y="262" width="52" height="16" rx="8" fill="rgba(92,107,192,0.12)"/>
+  <text x="205" y="273" text-anchor="middle" fill="#5C6BC0" font-size="8">载体构建</text>
+  <rect x="236" y="262" width="45" height="16" rx="8" fill="rgba(92,107,192,0.12)"/>
+  <text x="258" y="273" text-anchor="middle" fill="#5C6BC0" font-size="8">亚克隆</text>
+  <line x1="65" y1="285" x2="375" y2="285" stroke="#f5f5f5" stroke-width="1"/>
+  <text x="75" y="297" fill="#666" font-size="9">✓ 表达载体构建，阳性克隆筛选</text>
+  <text x="75" y="310" fill="#666" font-size="9">✓ 定点突变/缺失/插入</text>
+  <text x="75" y="323" fill="#666" font-size="9">✓ 全程技术支持保障</text>
+  <text x="75" y="336" fill="#666" font-size="9">✓ 测序验证确保结果准确</text>
+
+  <!-- Card 4: Reagent -->
+  <rect x="400" y="215" width="330" height="120" rx="10" fill="white" stroke="#eee" stroke-width="1"/>
+  <circle cx="430" cy="242" r="16" fill="#FFA62B"/>
+  <text x="430" y="247" text-anchor="middle" fill="white" font-size="11" font-weight="900">R</text>
+  <text x="453" y="237" fill="#1B263B" font-size="13" font-weight="700">试剂耗材</text>
+  <text x="453" y="252" fill="#aaa" font-size="9">一站式采购 · 品牌齐全</text>
+  <rect x="410" y="262" width="45" height="16" rx="8" fill="rgba(255,166,43,0.12)"/>
+  <text x="432" y="273" text-anchor="middle" fill="#E67E22" font-size="8">PCR试剂</text>
+  <rect x="460" y="262" width="58" height="16" rx="8" fill="rgba(255,166,43,0.12)"/>
+  <text x="489" y="273" text-anchor="middle" fill="#E67E22" font-size="8">提取纯化</text>
+  <rect x="523" y="262" width="52" height="16" rx="8" fill="rgba(255,166,43,0.12)"/>
+  <text x="549" y="273" text-anchor="middle" fill="#E67E22" font-size="8">克隆试剂</text>
+  <rect x="580" y="262" width="52" height="16" rx="8" fill="rgba(255,166,43,0.12)"/>
+  <text x="606" y="273" text-anchor="middle" fill="#E67E22" font-size="8">测序耗材</text>
+  <line x1="410" y1="285" x2="720" y2="285" stroke="#f5f5f5" stroke-width="1"/>
+  <text x="420" y="297" fill="#666" font-size="9">✓ Taq酶、高保真酶、预混液</text>
+  <text x="420" y="310" fill="#666" font-size="9">✓ 基因组DNA、质粒、RNA提取</text>
+  <text x="420" y="323" fill="#666" font-size="9">✓ 限制性内切酶、感受态细胞</text>
+  <text x="420" y="336" fill="#666" font-size="9">✓ PCR管/板、枪头、离心管等</text>
+
+  <!-- 生信模块 -->
+  <rect x="55" y="350" width="675" height="118" rx="10" fill="url(#bioGrad)" stroke="#d4e88a" stroke-width="1"/>
+  <circle cx="85" cy="375" r="14" fill="#a6c81e"/>
+  <text x="85" y="379" text-anchor="middle" fill="white" font-size="10" font-weight="900">B</text>
+  <text x="106" y="368" fill="#333" font-size="13" font-weight="700">个性化小规模生物信息学分析服务</text>
+  <text x="106" y="384" fill="#999" font-size="9">针对科研工作者和小型实验室，少量样本即可分析，8大核心服务模块</text>
+
+  <!-- 8个模块 -->
+  <rect x="65" y="398" width="77" height="58" rx="6" fill="white" stroke="#e8f5b0" stroke-width="1"/>
+  <text x="103" y="420" text-anchor="middle" font-size="16">🧬</text>
+  <text x="103" y="435" text-anchor="middle" fill="#333" font-size="9" font-weight="700">遗传定位</text>
+  <text x="103" y="447" text-anchor="middle" fill="#aaa" font-size="8">GWAS / QTL</text>
+
+  <rect x="148" y="398" width="77" height="58" rx="6" fill="white" stroke="#e8f5b0" stroke-width="1"/>
+  <text x="186" y="420" text-anchor="middle" font-size="16">📊</text>
+  <text x="186" y="435" text-anchor="middle" fill="#333" font-size="9" font-weight="700">转录组</text>
+  <text x="186" y="447" text-anchor="middle" fill="#aaa" font-size="8">RNA-seq / WGCNA</text>
+
+  <rect x="231" y="398" width="77" height="58" rx="6" fill="white" stroke="#e8f5b0" stroke-width="1"/>
+  <text x="269" y="420" text-anchor="middle" font-size="16">🔗</text>
+  <text x="269" y="435" text-anchor="middle" fill="#333" font-size="9" font-weight="700">非编码RNA</text>
+  <text x="269" y="447" text-anchor="middle" fill="#aaa" font-size="8">miRNA / lncRNA</text>
+
+  <rect x="314" y="398" width="77" height="58" rx="6" fill="white" stroke="#e8f5b0" stroke-width="1"/>
+  <text x="352" y="420" text-anchor="middle" font-size="16">⚛</text>
+  <text x="352" y="435" text-anchor="middle" fill="#333" font-size="9" font-weight="700">蛋白组</text>
+  <text x="352" y="447" text-anchor="middle" fill="#aaa" font-size="8">PPI / 定量</text>
+
+  <rect x="397" y="398" width="77" height="58" rx="6" fill="white" stroke="#e8f5b0" stroke-width="1"/>
+  <text x="435" y="420" text-anchor="middle" font-size="16">🧪</text>
+  <text x="435" y="435" text-anchor="middle" fill="#333" font-size="9" font-weight="700">代谢组</text>
+  <text x="435" y="447" text-anchor="middle" fill="#aaa" font-size="8">LC-MS / GC-MS</text>
+
+  <rect x="480" y="398" width="77" height="58" rx="6" fill="white" stroke="#e8f5b0" stroke-width="1"/>
+  <text x="518" y="420" text-anchor="middle" font-size="16">🌐</text>
+  <text x="518" y="435" text-anchor="middle" fill="#333" font-size="9" font-weight="700">多组学联合</text>
+  <text x="518" y="447" text-anchor="middle" fill="#aaa" font-size="8">eQTL / 跨组学</text>
+
+  <rect x="563" y="398" width="77" height="58" rx="6" fill="white" stroke="#e8f5b0" stroke-width="1"/>
+  <text x="601" y="420" text-anchor="middle" font-size="16">🔬</text>
+  <text x="601" y="435" text-anchor="middle" fill="#333" font-size="9" font-weight="700">微生物组</text>
+  <text x="601" y="447" text-anchor="middle" fill="#aaa" font-size="8">16S / 宏基因组</text>
+
+  <rect x="646" y="398" width="77" height="58" rx="6" fill="white" stroke="#e8f5b0" stroke-width="1"/>
+  <text x="684" y="420" text-anchor="middle" font-size="16">📈</text>
+  <text x="684" y="435" text-anchor="middle" fill="#333" font-size="9" font-weight="700">数据可视化</text>
+  <text x="684" y="447" text-anchor="middle" fill="#aaa" font-size="8">SCI级图表</text>
+
+  <!-- 为什么选择 -->
+  <text x="55" y="490" fill="#1B263B" font-size="11" font-weight="700">为什么选择恩博康 · We Are Different</text>
+  <line x1="55" y1="498" x2="739" y2="498" stroke="#eee" stroke-width="1"/>
+
+  <rect x="55" y="508" width="220" height="75" rx="8" fill="#f9f9f9"/>
+  <text x="75" y="535" fill="#a6c81e" font-size="20" font-weight="900" opacity="0.3">01</text>
+  <circle cx="108" cy="528" r="10" fill="rgba(166,200,30,0.1)"/>
+  <text x="108" y="532" text-anchor="middle" font-size="12">🌱</text>
+  <text x="125" y="525" fill="#1B263B" font-size="10" font-weight="700">农业科研深度聚焦</text>
+  <text x="75" y="550" fill="#888" font-size="8.5">专注农业方向，作物育种、植物分子、植病植保、基因编辑——我们都在行。</text>
+
+  <rect x="287" y="508" width="220" height="75" rx="8" fill="#f9f9f9"/>
+  <text x="307" y="535" fill="#a6c81e" font-size="20" font-weight="900" opacity="0.3">02</text>
+  <circle cx="340" cy="528" r="10" fill="rgba(166,200,30,0.1)"/>
+  <text x="340" y="532" text-anchor="middle" font-size="12">🔧</text>
+  <text x="357" y="525" fill="#1B263B" font-size="10" font-weight="700">一对一技术支持</text>
+  <text x="307" y="550" fill="#888" font-size="8.5">不是客服，是实验伙伴。引物设计、PCR优化、测序排错、构建验证——一对一配合解决。</text>
+
+  <rect x="519" y="508" width="220" height="75" rx="8" fill="#f9f9f9"/>
+  <text x="539" y="535" fill="#a6c81e" font-size="20" font-weight="900" opacity="0.3">03</text>
+  <circle cx="572" cy="528" r="10" fill="rgba(166,200,30,0.1)"/>
+  <text x="572" y="532" text-anchor="middle" font-size="12">🤝</text>
+  <text x="589" y="525" fill="#1B263B" font-size="10" font-weight="700">科辅服务无忧</text>
+  <text x="539" y="550" fill="#888" font-size="8.5">从引物设计到最终验证，复杂实验全程科辅，帮您省时间、省精力、提高成功率。</text>
+
+  <!-- 联系区域 -->
+  <rect x="55" y="600" width="675" height="110" rx="10" fill="#1B263B"/>
+  <text x="80" y="628" fill="white" font-size="16" font-weight="700">开始您的实验合作之旅</text>
+  <text x="80" y="648" fill="rgba(255,255,255,0.5)" font-size="9.5">无论是一个简单的测序需求，引物合成，试剂耗材，还是一个完整的实验方案，我们都愿意配合。</text>
+  <text x="80" y="663" fill="rgba(255,255,255,0.5)" font-size="9.5">专注农业科研领域，覆盖作物育种、植物分子、植病植保、基因编辑等方向。</text>
+  <text x="80" y="678" fill="rgba(255,255,255,0.5)" font-size="9.5">一对一技术顾问全程跟进，帮您把实验做通。新客户首单可享体验价，长期合作更有专属优惠。</text>
+
+  <rect x="395" y="615" width="135" height="18" rx="4" fill="rgba(166,200,30,0.2)"/>
+  <text x="410" y="627" fill="rgba(255,255,255,0.85)" font-size="10">☎ 13683326312（微信同号）</text>
+  <rect x="395" y="638" width="135" height="18" rx="4" fill="rgba(166,200,30,0.2)"/>
+  <text x="410" y="650" fill="rgba(255,255,255,0.85)" font-size="10">✉ service@enbokang.com</text>
+  <rect x="395" y="661" width="135" height="18" rx="4" fill="rgba(166,200,30,0.2)"/>
+  <text x="410" y="673" fill="rgba(255,255,255,0.85)" font-size="10">📍 北京市海淀区</text>
+  <rect x="395" y="684" width="135" height="18" rx="4" fill="rgba(166,200,30,0.2)"/>
+  <text x="410" y="696" fill="rgba(255,255,255,0.85)" font-size="10">⏰ 周一至周六 8:30-17:30</text>
+
+  <!-- 底部版权条 -->
+  <rect x="0" y="728" width="794" height="50" fill="#a6c81e"/>
+  <image href="assets/logo.svg" x="65" y="743" width="22" height="22"/>
+  <text x="95" y="760" fill="white" font-size="10" font-weight="700">恩博康（北京）生物科技有限公司</text>
+  <text x="630" y="760" fill="rgba(255,255,255,0.7)" font-size="9">© 2026 ENBOKANG BIO All Rights Reserved</text>
+</svg>
